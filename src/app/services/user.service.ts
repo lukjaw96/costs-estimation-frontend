@@ -5,17 +5,18 @@ import { User } from '../models/User';
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Authorization': 'my-auth-token'
+    'Authorization': 'Basic ' + sessionStorage.getItem('token')
   })
 };
+
+//let options = { headers: httpOptions };
 
 @Injectable()
 export class UserService {
   constructor(private http: HttpClient) { }  
 
   getAllUsers() {
-    return this.http.get("http://localhost:8080/demo/users");
+    return this.http.get("http://localhost:8080/demo/users", httpOptions);
   }
 
   createUser(user: User) {
@@ -23,7 +24,7 @@ export class UserService {
   }
 
   getUserById(id: number) {
-    return this.http.get(`http://localhost:8080/demo/users/${id}`);
+    return this.http.get(`http://localhost:8080/demo/users/${id}`, httpOptions);
   }
 
   updateUser (user: User) {
@@ -33,4 +34,25 @@ export class UserService {
   deleteUser(id: number) {
     return this.http.delete(`http://localhost:8080/demo/users/${id}`, httpOptions);
   }
+
+  //let url = 'http://localhost:8080/demo/user';
+
+  // let headers:Headers = new Headers({
+  //      'Authorization': 'Basic ' + sessionStorage.getItem('token')
+  //  })
+//let options = new RequestOptions({headers: headers});
+
+//     let headers: HttpHeaders = new HttpHeaders();
+// headers = headers.append('Authorization', 'Basic ' + sessionStorage.getItem('token'));
+
+// const options = {
+//   headers: new HttpHeaders().append('Authorization', 'Basic ' + sessionStorage.getItem('token')),
+// }
+
+
+
+// console.log("headers", headers);
+// this.http.get(url, options).subscribe(principal => {
+//   console.log(principal);
+// });
 }

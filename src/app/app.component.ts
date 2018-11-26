@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from './services/user.service'
 import { User } from './models/User'
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 const httpOptions = {
@@ -73,10 +73,34 @@ export class AppComponent implements OnInit {
   user: User;
 
   getAllUsers() {
-    this.configService.getAllUsers()
-    .subscribe((data: User[]) => {
-      this.allUsers = data;
-    });
+    // this.configService.getAllUsers()
+    // .subscribe((data: User[]) => {
+    //   this.allUsers = data;
+    // });
+    let url = 'http://localhost:8080/demo/users';
+
+    // let headers:Headers = new Headers({
+    //      'Authorization': 'Basic ' + sessionStorage.getItem('token')
+    //  })
+  //let options = new RequestOptions({headers: headers});
+
+//     let headers: HttpHeaders = new HttpHeaders();
+// headers = headers.append('Authorization', 'Basic ' + sessionStorage.getItem('token'));
+
+  // const options = {
+  //   headers: new HttpHeaders().append('Authorization', 'Basic ' + sessionStorage.getItem('token')),
+  // }
+
+  //console.log(headers);
+
+  let headers = new HttpHeaders({
+  'Authorization': 'Basic ' + sessionStorage.getItem('token') });
+let options = { headers: headers };
+  
+console.log("headers", headers);
+  this.http.get(url, options).subscribe((data: User[]) => {
+       this.allUsers = data;
+     });
   }
 
   createUser(userToCreate: User) {
@@ -97,5 +121,39 @@ export class AppComponent implements OnInit {
   deleteUser(id: number) {
     this.configService.deleteUser(id).subscribe();
   }
+
+
+
+
+  userName: string;
+
+  getUser() {
+    let url = 'http://localhost:8080/demo/usertest';
+
+      // let headers:Headers = new Headers({
+      //      'Authorization': 'Basic ' + sessionStorage.getItem('token')
+      //  })
+    //let options = new RequestOptions({headers: headers});
+
+//     let headers: HttpHeaders = new HttpHeaders();
+// headers = headers.append('Authorization', 'Basic ' + sessionStorage.getItem('token'));
+
+    // const options = {
+    //   headers: new HttpHeaders().append('Authorization', 'Basic ' + sessionStorage.getItem('token')),
+    // }
+
+    //console.log(headers);
+
+    let headers = new HttpHeaders({
+    'Authorization': 'Basic ' + sessionStorage.getItem('token') });
+let options = { headers: headers };
+    
+console.log("headers", headers);
+    this.http.get(url, options).subscribe(principal => {
+      console.log(principal);
+    });
+}
+
+
 
 }
