@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from './services/user.service'
-import { User } from './models/User'
+import { UserService } from '../services/user.service'
+import { User } from '../models/User'
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'admin-start-page',
+  templateUrl: './admin-start-page.template.html',
 })
-export class AppComponent implements OnInit {
+export class AdminStartPage {
+
   title = 'costs-estimation-frontend';
   model: any = {};
 
@@ -20,12 +20,17 @@ export class AppComponent implements OnInit {
     private http: HttpClient
     ) { } 
 
-  ngOnInit() {
-    //sessionStorage.setItem('token', '');
-  }
+  // ngOnInit() {
+  //   sessionStorage.setItem('token', '');
+  // }
 
   login() {
     return this.configService.loginService(this.model);
+  }
+
+  logout() {
+    sessionStorage.setItem('token', '');
+    this.router.navigate(['login']);
   }
 
   userId: number = 2;
@@ -70,7 +75,7 @@ export class AppComponent implements OnInit {
 
   createUser() {
     console.log("modelUser", this.modelUser);
-    this.model.user.id = parseInt(this.model.user.id);
+    // this.model.user.id = parseInt(this.model.user.id);
     this.configService.createUser(this.modelUser).subscribe();
   }
 

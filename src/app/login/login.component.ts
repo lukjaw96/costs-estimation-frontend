@@ -1,16 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from './services/user.service'
-import { User } from './models/User'
+import { UserService } from '../services/user.service'
+import { User } from '../models/User'
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'login',
+  templateUrl: './login.template.html'
 })
-export class AppComponent implements OnInit {
-  title = 'costs-estimation-frontend';
+export class Login implements OnInit {
   model: any = {};
 
   constructor(
@@ -21,7 +19,7 @@ export class AppComponent implements OnInit {
     ) { } 
 
   ngOnInit() {
-    //sessionStorage.setItem('token', '');
+    sessionStorage.setItem('token', '');
   }
 
   login() {
