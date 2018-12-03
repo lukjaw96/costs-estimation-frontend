@@ -1,24 +1,20 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoginComponent } from './login/login.component';
+import { AdminComponent } from './admin/admin.component';
+import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { UserService } from './services/user.service';
-import { LoginService } from './services/login.service';
+import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
-import { AdminStartPage } from './admin/admin-start-page.component';
-import { Login } from './login/login.component';
-import { UserComponent } from './user/user.component';
-import { AdminService } from './services/admin.service';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserService } from './services/user/user.service';
+import { LoginService } from './services/login/login.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminStartPage,
-    Login,
-    UserComponent,
+    LoginComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -29,10 +25,11 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
   ],
   providers: [
     UserService,
-    LoginService,
-    AdminService
+    LoginService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
 

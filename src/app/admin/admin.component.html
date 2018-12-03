@@ -1,0 +1,98 @@
+<button (click)="logout()">logout</button>
+<h2>All users</h2>
+<table>
+  <thead>
+    <tr>
+      <th>idUser</th>
+      <th>firstName</th>
+      <th>lastName</th>
+      <th>username</th>
+      <th>role</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody *ngIf="users">
+    <tr *ngFor="let user of users">
+      <td>{{user.idUser}}</td>
+      <td>{{user.firstName}}</td>
+      <td>{{user.lastName}}</td>
+      <td>{{user.username}}</td>
+      <td>{{user.role}}</td>
+      <td><button (click)="openUpdateUser(contentUpdate, user)">update user</button></td>
+      <td><button (click)="deleteUser(user.idUser)">delete user</button></td>
+    </tr>
+  <tbody>
+</table>
+<button (click)="openAddUser(contentAdd, user)">add user</button>
+
+<ng-template #contentAdd let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add user</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="firstName">firstName</label>
+        <input type="text" class="form-control" name="firstName" [(ngModel)]="newUser.firstName" />
+      </div>
+      <div class="form-group">
+        <label for="lastName">lastName</label>
+        <input type="text" class="form-control" name="lastName" [(ngModel)]="newUser.lastName" />
+      </div>
+      <div class="form-group">
+        <label for="username">username</label>
+        <input type="text" class="form-control" name="username" [(ngModel)]="newUser.username" />
+      </div>
+      <div class="form-group">
+        <label for="password">password</label>
+        <input type="text" class="form-control" name="password" [(ngModel)]="newUser.password" />
+      </div>
+      <div class="form-group">
+        <label for="role">role</label>
+        <input type="text" class="form-control" name="role" [(ngModel)]="newUser.role" />
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="addUser(newUser)">Save</button>
+  </div>
+</ng-template>
+
+<ng-template #contentUpdate let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Update user</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="firstNameUpdatedUser">firstName</label>
+        <input type="text" class="form-control" name="firstNameUpdatedUser" [(ngModel)]="updatedUser.firstName" />
+      </div>
+      <div class="form-group">
+        <label for="lastNameUpdatedUser">lastName</label>
+        <input type="text" class="form-control" name="lastNameUpdatedUser" [(ngModel)]="updatedUser.lastName" />
+      </div>
+      <div class="form-group">
+        <label for="usernameUpdatedUser">username</label>
+        <input type="text" class="form-control" name="usernameUpdatedUser" [(ngModel)]="updatedUser.username" />
+      </div>
+      <div class="form-group">
+        <label for="passwordUpdatedUser">password</label>
+        <input type="text" class="form-control" name="passwordUpdatedUser" [(ngModel)]="updatedUser.password" />
+      </div>
+      <div class="form-group">
+        <label for="roleUpdatedUser">role</label>
+        <input type="text" class="form-control" name="roleUpdatedUser" [(ngModel)]="updatedUser.role" />
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="updateUser(updatedUser)">Update</button>
+  </div>
+</ng-template>

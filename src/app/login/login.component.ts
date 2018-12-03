@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../services/login.service';
+import { LoginUser } from '../models/LoginUser';
+import { ApiResponse } from '../models/ApiResponse';
+import { LoginService } from '../services/login/login.service';
 import { Router } from '@angular/router';
-import { LoginUser } from '../models/login/LoginUser';
-import { ApiResponse } from '../models/login/ApiResponse';
 
 @Component({
-  selector: 'login',
-  templateUrl: './login.template.html'
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class Login implements OnInit {
+export class LoginComponent implements OnInit {
 
   model: LoginUser = {
     username: '',
@@ -27,16 +28,17 @@ export class Login implements OnInit {
   constructor(
     private loginService: LoginService,
     private router: Router
-    ) { } 
+  ) { }
 
   ngOnInit() {
     sessionStorage.setItem('Bearer', '');
   }
-  
+
   login() {
     this.loginService.login(this.model).subscribe((result: ApiResponse) => {
       sessionStorage.setItem('Bearer', result.result.token);
       this.router.navigate(['admin']);
     });
   }
+
 }
