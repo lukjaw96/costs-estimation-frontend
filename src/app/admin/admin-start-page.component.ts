@@ -1,99 +1,108 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service'
-import { User } from '../models/User'
-import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { AdminService } from '../services/admin.service'
+import { User } from '../models/User';
+import { NewUser } from '../models/NewUser';
+import { Router } from '@angular/router';
+
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'admin-start-page',
   templateUrl: './admin-start-page.template.html',
 })
-export class AdminStartPage {
-
-  title = 'costs-estimation-frontend';
-  model: any = {};
-
+export class AdminStartPage implements OnInit {
+ 
   constructor(
-    private configService: UserService,
-    private route: ActivatedRoute,
+    private adminService: AdminService,
     private router: Router,
-    private http: HttpClient
-    ) { } 
+    private modalService: NgbModal
+  ) { } 
 
-  // ngOnInit() {
-  //   sessionStorage.setItem('token', '');
-  // }
+  users: User[] = [];
 
-  login() {
-    return this.configService.loginService(this.model);
+  ngOnInit() {
+    this.adminService.getAllUsers().subscribe((users: User[]) => {
+      this.users = users;
+    });
   }
 
   logout() {
-    sessionStorage.setItem('token', '');
+    sessionStorage.setItem('Bearer', '');
     this.router.navigate(['login']);
   }
 
-  userId: number = 2;
+  closeResult: string;
 
-  modelUser: {
-    id: number,
-    login: string,
-    password: string,
-    role: string
-  } = {
-    id: null,
-    login: null,
-    password: null,
-    role: null
+  newUser: NewUser = {
+    idUser: null,
+    firstName: '',
+    lastName: '',
+    username: '',
+    password: '',
+    role: '',
+  }
+
+  updatedUser: User = {
+    idUser: null,
+    firstName: '',
+    lastName: '',
+    username: '',
+    role: '',
   }
 
 
 
-  userToUpdate: {
-    id: number,
-    login: string,
-    password: string,
-    role: string
-  } = {
-    id: null,
-    login: null,
-    password: null,
-    role: null
-  }
-
-  allUsers: User[] = [];
-  user: User;
-
-  userToDelete: number = null;
-
-  getAllUsers() {  
-
-  this.configService.getAllUsersService().subscribe((data: User[]) => {
-      this.allUsers = data;
+  open(content, user: User) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+
+    if(user != null) {
+      this.updatedUser.idUser = user.idUser;
+      this.updatedUser.firstName = user.firstName;
+      this.updatedUser.lastName = user.lastName;
+      this.updatedUser.role = user.role;
+      this.updatedUser.username = user.username;
+    }
   }
 
-  createUser() {
-    console.log("modelUser", this.modelUser);
-    // this.model.user.id = parseInt(this.model.user.id);
-    this.configService.createUser(this.modelUser).subscribe();
+  deleteUser(user: User) {
+    this.adminService.deleteUser(user).subscribe(() =>     this.adminService.getAllUsers().subscribe((users: User[]) => {
+      this.users = users;
+    }));
   }
 
-  getUserById(id: number) {
-    this.configService.getUserById(id)
-    .subscribe((data: User) => {
-      this.user = data;
-    });
+  addUser(newUser: NewUser) {
+    this.adminService.addUser(newUser).subscribe(() =>     this.adminService.getAllUsers().subscribe((users: User[]) => {
+      this.users = users;
+    }));
+
+    this.modalService.dismissAll();
   }
 
-  updateUser() {
-    console.log("userToUpdate", this.userToUpdate);
-    this.configService.updateUser(this.userToUpdate).subscribe();
+  updateUser(newUser: User) {
+    this.adminService.updateUser(newUser).subscribe(() =>     this.adminService.getAllUsers().subscribe((users: User[]) => {
+      this.users = users;
+    }));
+
+    this.modalService.dismissAll();
   }
 
-  deleteUser(id: number) {
-    this.configService.deleteUser(id).subscribe();
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 
-  userName: string;
+  // addUser() {
+  //   modal.close('Save click')
+  // }
+
+  
 }

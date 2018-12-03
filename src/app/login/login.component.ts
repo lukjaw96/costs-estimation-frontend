@@ -1,92 +1,42 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user.service'
-import { User } from '../models/User'
-import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import { LoginService } from '../services/login.service';
+import { Router } from '@angular/router';
+import { LoginUser } from '../models/login/LoginUser';
+import { ApiResponse } from '../models/login/ApiResponse';
 
 @Component({
   selector: 'login',
   templateUrl: './login.template.html'
 })
 export class Login implements OnInit {
-  model: any = {};
+
+  model: LoginUser = {
+    username: '',
+    password: ''
+  }
+
+  result: ApiResponse = {
+    status: null,
+    message: '',
+    result: {
+      token: '',
+      username: ''
+    }
+  }
 
   constructor(
-    private configService: UserService,
-    private route: ActivatedRoute,
-    private router: Router,
-    private http: HttpClient
+    private loginService: LoginService,
+    private router: Router
     ) { } 
 
   ngOnInit() {
-    sessionStorage.setItem('token', '');
+    sessionStorage.setItem('Bearer', '');
   }
-
+  
   login() {
-    return this.configService.loginService(this.model);
-  }
-
-  userId: number = 2;
-
-  modelUser: {
-    id: number,
-    login: string,
-    password: string,
-    role: string
-  } = {
-    id: null,
-    login: null,
-    password: null,
-    role: null
-  }
-
-
-
-  userToUpdate: {
-    id: number,
-    login: string,
-    password: string,
-    role: string
-  } = {
-    id: null,
-    login: null,
-    password: null,
-    role: null
-  }
-
-  allUsers: User[] = [];
-  user: User;
-
-  userToDelete: number = null;
-
-  getAllUsers() {  
-
-  this.configService.getAllUsersService().subscribe((data: User[]) => {
-      this.allUsers = data;
+    this.loginService.login(this.model).subscribe((result: ApiResponse) => {
+      sessionStorage.setItem('Bearer', result.result.token);
+      this.router.navigate(['admin']);
     });
   }
-
-  createUser() {
-    console.log("modelUser", this.modelUser);
-    this.model.user.id = parseInt(this.model.user.id);
-    this.configService.createUser(this.modelUser).subscribe();
-  }
-
-  getUserById(id: number) {
-    this.configService.getUserById(id)
-    .subscribe((data: User) => {
-      this.user = data;
-    });
-  }
-
-  updateUser() {
-    console.log("userToUpdate", this.userToUpdate);
-    this.configService.updateUser(this.userToUpdate).subscribe();
-  }
-
-  deleteUser(id: number) {
-    this.configService.deleteUser(id).subscribe();
-  }
-
-  userName: string;
 }
