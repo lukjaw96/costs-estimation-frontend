@@ -3,6 +3,8 @@ export interface ApiResponse {
     message: string, 
     result: {
         token: string, 
-        username: string
+        username: string,
+        userId: number,
+        role: string
     }
 }

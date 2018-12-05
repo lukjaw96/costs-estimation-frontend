@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from '../services/user/user.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../models/User';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { ApiResponse } from '../models/ApiResponse';
 
 @Component({
   selector: 'app-admin',
@@ -12,10 +13,22 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class AdminComponent implements OnInit {
 
   users: User[] = [];
+  updatedUser: User;
 
   closeResult: string;
 
-  newUser: User = {
+  
+
+
+
+  gotUser: {
+    idUser: number,
+    firstName: string,
+    lastName: string,
+    username: string,
+    password: string,
+    role: string,
+  } = {
     idUser: null,
     firstName: '',
     lastName: '',
@@ -24,50 +37,37 @@ export class AdminComponent implements OnInit {
     role: '',
   }
 
-  updatedUser: User = {
-    idUser: null,
-    firstName: '',
-    lastName: '',
-    username: '',
-    password: '',
-    role: '',
-  }
-
+  @Input() signedUser: User;
+  
   constructor(
-    private adminService: UserService,
+    private userService: UserService,
     private router: Router,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.adminService.getAllUsers().subscribe((users: User[]) => {
+    this.getAllUsers();
+  }
+
+  getAllUsers() {
+    this.userService.getAllUsers().subscribe((users: User[]) => {
       this.users = users;
     });
+  }
+
+  openGetUser(content) {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+    this.getUser(this.route.snapshot.paramMap.get('id'));
   }
 
   logout() {
     sessionStorage.setItem('Bearer', '');
     this.router.navigate(['login']);
-  }
-
-  addUser(newUser: User) {
-    this.adminService.addUser(newUser).subscribe(() => this.adminService.getAllUsers().subscribe((users: User[]) => {
-      this.users = users;
-    }));
-    this.modalService.dismissAll();
-  }
-
-  updateUser(updatedUser: User) {
-    this.adminService.updateUser(updatedUser).subscribe(() => this.adminService.getAllUsers().subscribe((users: User[]) => {
-      this.users = users;
-    }));
-    this.modalService.dismissAll();
-  }
-
-  deleteUser(idUser: string) {
-    this.adminService.deleteUser(idUser).subscribe(() => this.adminService.getAllUsers().subscribe((users: User[]) => {
-      this.users = users;
-    }));
   }
 
   openUpdateUser(content, user: User) {
@@ -76,14 +76,25 @@ export class AdminComponent implements OnInit {
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
+    this.updatedUser = user;
+  }
 
-    if (user != null) {
-      this.updatedUser.idUser = user.idUser;
-      this.updatedUser.firstName = user.firstName;
-      this.updatedUser.lastName = user.lastName;
-      this.updatedUser.role = user.role;
-      this.updatedUser.username = user.username;
-    }
+  getUser(idUser: string) {
+    this.userService.getUser(idUser).subscribe((user: User) => {
+      this.gotUser.idUser = user.idUser;
+      this.gotUser.firstName = user.firstName;
+      this.gotUser.lastName = user.lastName;
+      this.gotUser.role = user.role;
+      this.gotUser.username = user.username;
+      this.gotUser.password = user.password;
+    })
+  }
+
+
+  deleteUser(idUser: string) {
+    this.userService.deleteUser(idUser).subscribe(() => this.userService.getAllUsers().subscribe((users: User[]) => {
+      this.users = users;
+    }));
   }
 
   openAddUser(content) {

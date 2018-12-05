@@ -21,7 +21,9 @@ export class LoginComponent implements OnInit {
     message: '',
     result: {
       token: '',
-      username: ''
+      username: '',
+      userId: null,
+      role: ''
     }
   }
 
@@ -37,8 +39,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.loginService.login(this.model).subscribe((result: ApiResponse) => {
       sessionStorage.setItem('Bearer', result.result.token);
-      this.router.navigate(['admin']);
+      this.router.navigate([result.result.role.toLowerCase(), {id: result.result.userId}]);
     });
   }
-
 }
