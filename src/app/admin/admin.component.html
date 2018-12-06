@@ -20,8 +20,8 @@
       <td>{{user.lastName}}</td>
       <td>{{user.username}}</td>
       <td>{{user.role}}</td>
-      <td><button (click)="openUpdateUser(contentUpdate, user)">update user</button></td>
-      <td><button (click)="deleteUser(user.idUser)">delete user</button></td>
+      <td><button *ngIf="!(user.idUser==signedUserId)" (click)="openUpdateUser(contentUpdate, user)">update user</button></td>
+      <td><button *ngIf="!(user.idUser==signedUserId)" (click)="deleteUser(user.idUser)">delete user</button></td>
     </tr>
   <tbody>
 </table>
@@ -37,5 +37,5 @@
 </ng-template>
 
 <ng-template #contentGet let-modal>
-  <app-update-self [modal]="modal" [gotUser]="gotUser"></app-update-self>
+  <app-update-self [modal]="modal" [updateSelfUser]="updateSelfUser"></app-update-self>
 </ng-template>

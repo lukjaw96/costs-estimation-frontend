@@ -1,7 +1,7 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user/user.service';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add-user',
@@ -14,11 +14,11 @@ export class AddUserComponent implements OnInit {
 
   newUser: User = {
     idUser: null,
-    firstName: '',
-    lastName: '',
-    username: '',
-    password: '',
-    role: '',
+    firstName: null,
+    lastName: null,
+    username: null,
+    password: null,
+    role: null,
   }
 
   constructor(
@@ -30,7 +30,7 @@ export class AddUserComponent implements OnInit {
   }
 
   addUser(newUser: User) {
-    this.userService.addUser(newUser).subscribe(() => this.userService.getAllUsers().subscribe(() => { }));
+    this.userService.addUser(newUser).subscribe(() => this.userService.getAllUsers().subscribe());
     this.modalService.dismissAll();
   }
 }

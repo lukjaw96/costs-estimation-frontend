@@ -10,16 +10,16 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class UpdateSelfComponent implements OnInit {
 
-  @Input() gotUser: User;
+  @Input() updateSelfUser: User;
   @Input() modal;
 
   idUser: string;
   closeResult: string;
 
   constructor(
-      private userService: UserService, 
-      private modalService: NgbModal
-    ) { }
+    private userService: UserService,
+    private modalService: NgbModal
+  ) { }
 
   ngOnInit() {
   }
@@ -30,7 +30,7 @@ export class UpdateSelfComponent implements OnInit {
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
-    this.idUser = idUser;    
+    this.idUser = idUser;
   }
 
   updateUserSelf(updatedUser: User) {

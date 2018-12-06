@@ -3,7 +3,6 @@ import { UserService } from '../services/user/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../models/User';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { ApiResponse } from '../models/ApiResponse';
 
 @Component({
   selector: 'app-admin',
@@ -17,28 +16,17 @@ export class AdminComponent implements OnInit {
 
   closeResult: string;
 
-  
-
-
-
-  gotUser: {
-    idUser: number,
-    firstName: string,
-    lastName: string,
-    username: string,
-    password: string,
-    role: string,
-  } = {
+  updateSelfUser: User = {
     idUser: null,
-    firstName: '',
-    lastName: '',
-    username: '',
-    password: '',
-    role: '',
+    firstName: null,
+    lastName: null,
+    username: null,
+    password: null,
+    role: null,
   }
 
-  @Input() signedUser: User;
-  
+  signedUserId: string;
+
   constructor(
     private userService: UserService,
     private router: Router,
@@ -48,11 +36,12 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     this.getAllUsers();
+    this.signedUserId = this.route.snapshot.paramMap.get('id');
   }
 
   getAllUsers() {
-    this.userService.getAllUsers().subscribe((users: User[]) => {
-      this.users = users;
+    this.userService.getAllUsers().subscribe((result: { status: number, message: string, result: User[] }) => {
+      this.users = result.result;
     });
   }
 
@@ -80,20 +69,15 @@ export class AdminComponent implements OnInit {
   }
 
   getUser(idUser: string) {
-    this.userService.getUser(idUser).subscribe((user: User) => {
-      this.gotUser.idUser = user.idUser;
-      this.gotUser.firstName = user.firstName;
-      this.gotUser.lastName = user.lastName;
-      this.gotUser.role = user.role;
-      this.gotUser.username = user.username;
-      this.gotUser.password = user.password;
+    this.userService.getUser(idUser).subscribe((result: { status: number, message: string, result: User }) => {
+      this.updateSelfUser = Object.assign({}, result.result);
     })
   }
 
 
   deleteUser(idUser: string) {
-    this.userService.deleteUser(idUser).subscribe(() => this.userService.getAllUsers().subscribe((users: User[]) => {
-      this.users = users;
+    this.userService.deleteUser(idUser).subscribe(() => this.userService.getAllUsers().subscribe((result: { status: number, message: string, result: User[] }) => {
+      this.users = result.result;
     }));
   }
 

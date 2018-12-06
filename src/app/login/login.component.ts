@@ -12,18 +12,18 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   model: LoginUser = {
-    username: '',
-    password: ''
+    username: null,
+    password: null
   }
 
   result: ApiResponse = {
     status: null,
-    message: '',
+    message: null,
     result: {
-      token: '',
-      username: '',
+      token: null,
+      username: null,
       userId: null,
-      role: ''
+      role: null
     }
   }
 
@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.loginService.login(this.model).subscribe((result: ApiResponse) => {
       sessionStorage.setItem('Bearer', result.result.token);
-      this.router.navigate([result.result.role.toLowerCase(), {id: result.result.userId}]);
+      this.router.navigate([result.result.role.toLowerCase(), { id: result.result.userId }]);
     });
   }
 }

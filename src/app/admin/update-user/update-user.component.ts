@@ -15,22 +15,17 @@ export class UpdateUserComponent implements OnInit {
 
   updatedUser: User ={
     idUser: null,
-    firstName: '',
-    lastName: '',
-    username: '',
-    password: '',
-    role: ''
+    firstName: null,
+    lastName: null,
+    username: null,
+    password: null,
+    role: null
   };
   
   constructor(private userService: UserService, private modalService: NgbModal) { }
 
   ngOnInit() {
-    this.updatedUser.idUser = this.updatedUserSend.idUser;
-    this.updatedUser.firstName = this.updatedUserSend.firstName;
-    this.updatedUser.lastName = this.updatedUserSend.lastName;
-    this.updatedUser.role = this.updatedUserSend.role;
-    this.updatedUser.username = this.updatedUserSend.username;
-    this.updatedUser.password = this.updatedUserSend.password;
+    this.updatedUser = Object.assign({}, this.updatedUserSend);
   }
 
   updateUser(updatedUser: User) {

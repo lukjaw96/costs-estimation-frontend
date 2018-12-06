@@ -7,28 +7,29 @@
 <div class="modal-body">
   <form>
     <div class="form-group">
-      <label for="idUserGotUser">idUser</label>
-      <input type="text" class="form-control" name="idUserGotUser" [(ngModel)]="gotUser.idUser" disabled />
+      <label for="idUserupdateSelfUser">idUser</label>
+      <input type="text" class="form-control" name="idUserupdateSelfUser" [(ngModel)]="updateSelfUser.idUser" disabled />
     </div>
     <div class="form-group">
-      <label for="firstNameGotUser">firstName</label>
-      <input type="text" class="form-control" name="firstNameGotUser" [(ngModel)]="gotUser.firstName" />
+      <label for="firstNameupdateSelfUser">firstName</label>
+      <input type="text" class="form-control" name="firstNameupdateSelfUser" [(ngModel)]="updateSelfUser.firstName" />
     </div>
     <div class="form-group">
-      <label for="lastNameGotUser">lastName</label>
-      <input type="text" class="form-control" name="lastNameGotUser" [(ngModel)]="gotUser.lastName" />
+      <label for="lastNameupdateSelfUser">lastName</label>
+      <input type="text" class="form-control" name="lastNameupdateSelfUser" [(ngModel)]="updateSelfUser.lastName" />
     </div>
     <div class="form-group">
-      <label for="usernameGotUser">username</label>
-      <input type="text" class="form-control" name="usernameGotUser" [(ngModel)]="gotUser.username" disabled />
+      <label for="usernameupdateSelfUser">username</label>
+      <input type="text" class="form-control" name="usernameupdateSelfUser" [(ngModel)]="updateSelfUser.username"
+        disabled />
     </div>
     <div class="form-group">
-      <label for="roleGotUser">role</label>
-      <input type="text" class="form-control" name="roleGotUser" [(ngModel)]="gotUser.role" disabled />
+      <label for="roleupdateSelfUser">role</label>
+      <input type="text" class="form-control" name="roleupdateSelfUser" [(ngModel)]="updateSelfUser.role" disabled />
     </div>
 
-    <button (click)="openUpdateUserPassword(contentUpdatePassword, gotUser.idUser)">change password</button>
-    <button (click)="updateUserSelf(gotUser)">Update</button>
+    <button (click)="openUpdateUserPassword(contentUpdatePassword, updateSelfUser.idUser)">change password</button>
+    <button (click)="updateUserSelf(updateSelfUser)">Update</button>
   </form>
 </div>
 <div class="modal-footer">

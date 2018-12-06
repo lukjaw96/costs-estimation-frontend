@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from 'src/app/models/User';
+import { UserPasswordUpdate } from 'src/app/models/UserPasswordUpdate';
 
 @Injectable({
   providedIn: 'root'
@@ -39,16 +40,8 @@ export class UserService {
     return this.http.put<User>(`${this.rootAddress}/users/${user.idUser}/update-self`, user, this.getHttpHeaders());
   }
 
-  updateUserPassword(user: {
-    idUser: number,    
-    oldPassword: string,
-    password: string
-  }) {
-    return this.http.put<{
-      idUser: number,    
-      oldPassword: string,
-      password: string
-    }>(`${this.rootAddress}/users/${user.idUser}/password-update`, user, this.getHttpHeaders());
+  updateUserPassword(user: UserPasswordUpdate) {
+    return this.http.put<UserPasswordUpdate>(`${this.rootAddress}/users/${user.idUser}/password-update`, user, this.getHttpHeaders());
   }
 
   deleteUser(idUser: string) {

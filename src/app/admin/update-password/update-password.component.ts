@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { UserService } from 'src/app/services/user/user.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UserPasswordUpdate } from 'src/app/models/UserPasswordUpdate';
 
 @Component({
   selector: 'app-update-password',
@@ -16,18 +17,14 @@ export class UpdatePasswordComponent implements OnInit {
     oldPassword: string,
     password: string
   } = {
-    oldPassword: '',
-    password: ''
-  }
+      oldPassword: null,
+      password: null
+    }
 
-  gotUpdateUserPassword: {
-    idUser: number,    
-    oldPassword: string,
-    password: string
-  } = {
-    idUser: null,    
-    oldPassword: '',
-    password: ''
+  updatedUserPassword: UserPasswordUpdate = {
+    idUser: null,
+    oldPassword: null,
+    password: null
   }
 
   constructor(private userService: UserService, private modalService: NgbModal) { }
@@ -35,15 +32,12 @@ export class UpdatePasswordComponent implements OnInit {
   ngOnInit() {
   }
 
-
-
   updateUserPassword() {
+    this.updatedUserPassword.idUser = this.idUser;
+    this.updatedUserPassword.password = this.updatePassword.password;
+    this.updatedUserPassword.oldPassword = this.updatePassword.oldPassword;
 
-    this.gotUpdateUserPassword.idUser = this.idUser;
-    this.gotUpdateUserPassword.password = this.updatePassword.password;
-    this.gotUpdateUserPassword.oldPassword = this.updatePassword.oldPassword;
-
-    this.userService.updateUserPassword(this.gotUpdateUserPassword).subscribe(() => this.userService.getAllUsers().subscribe());
+    this.userService.updateUserPassword(this.updatedUserPassword).subscribe(() => this.userService.getAllUsers().subscribe());
     this.modalService.dismissAll();
   }
 
