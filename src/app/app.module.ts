@@ -13,6 +13,14 @@ import { AddUserComponent } from './admin/add-user/add-user.component';
 import { UpdateUserComponent } from './admin/update-user/update-user.component';
 import { UpdatePasswordComponent } from './admin/update-password/update-password.component';
 import { UpdateSelfComponent } from './admin/update-self/update-self.component';
+import { ProjectManagerComponent } from './project-manager/project-manager.component';
+import { SettingsBarComponent } from './settings-bar/settings-bar.component';
+import { ProjectService } from './services/project/project.service';
+import { AddProjectComponent } from './project-manager/add-project/add-project.component';
+import { AnalystComponent } from './analyst/analyst.component';
+import { ProjectRequirementsComponent } from './analyst/project-requirements/project-requirements.component';
+import { RequirementService } from './services/requirement/requirement.service';
+import { AddRequirementComponent } from './analyst/project-requirements/add-requirement/add-requirement.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +30,13 @@ import { UpdateSelfComponent } from './admin/update-self/update-self.component';
     AddUserComponent,
     UpdateUserComponent,
     UpdatePasswordComponent,
-    UpdateSelfComponent
+    UpdateSelfComponent,
+    ProjectManagerComponent,
+    SettingsBarComponent,
+    AddProjectComponent,
+    AnalystComponent,
+    ProjectRequirementsComponent,
+    AddRequirementComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +47,9 @@ import { UpdateSelfComponent } from './admin/update-self/update-self.component';
   ],
   providers: [
     UserService,
-    LoginService
+    LoginService,
+    ProjectService,
+    RequirementService
   ],
   bootstrap: [
     AppComponent

@@ -1,0 +1,33 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Add requirement</h4>
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="form-group">
+      <label for="name">name</label>
+      <input type="text" class="form-control" name="name" [(ngModel)]="newRequirement.name" />
+    </div>
+    <div class="form-group">
+      <label for="description">description</label>
+      <input type="text" class="form-control" name="description" [(ngModel)]="newRequirement.description" />
+    </div>
+    <div class="form-group">
+      <label for="author">author</label>
+      <input type="text" class="form-control" name="author" [(ngModel)]="newRequirement.author" />
+    </div>
+    <div class="form-group">
+      <label for="creationDate">creationDate</label>
+      <input type="text" class="form-control" name="creationDate" [(ngModel)]="newRequirement.creationDate" />
+    </div>
+    <div class="form-group">
+      <label for="finalCost">finalCost</label>
+      <input type="text" class="form-control" name="finalCost" [(ngModel)]="newRequirement.finalCost" />
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="addRequirement(newRequirement)">Save</button>
+</div>

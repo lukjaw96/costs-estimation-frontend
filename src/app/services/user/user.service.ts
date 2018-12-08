@@ -24,12 +24,12 @@ export class UserService {
     return this.http.get(`${this.rootAddress}/users`, this.getHttpHeaders());
   }
 
-  getUser(idUser: string) {
-    return this.http.get(`${this.rootAddress}/users/${idUser}`, this.getHttpHeaders());
-  }
-
   addUser(user: User) {
     return this.http.post<User>(`${this.rootAddress}/users/add`, user, this.getHttpHeaders());
+  }
+
+  getUser(idUser: string) {
+    return this.http.get(`${this.rootAddress}/users/${idUser}`, this.getHttpHeaders());
   }
 
   updateUser(user: User) {

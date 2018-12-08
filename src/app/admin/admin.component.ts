@@ -13,23 +13,11 @@ export class AdminComponent implements OnInit {
 
   users: User[] = [];
   updatedUser: User;
-
   closeResult: string;
-
-  updateSelfUser: User = {
-    idUser: null,
-    firstName: null,
-    lastName: null,
-    username: null,
-    password: null,
-    role: null,
-  }
-
   signedUserId: string;
 
   constructor(
     private userService: UserService,
-    private router: Router,
     private modalService: NgbModal,
     private route: ActivatedRoute
   ) { }
@@ -45,20 +33,6 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  openGetUser(content) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-    this.getUser(this.route.snapshot.paramMap.get('id'));
-  }
-
-  logout() {
-    sessionStorage.setItem('Bearer', '');
-    this.router.navigate(['login']);
-  }
-
   openUpdateUser(content, user: User) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
@@ -67,13 +41,6 @@ export class AdminComponent implements OnInit {
     });
     this.updatedUser = user;
   }
-
-  getUser(idUser: string) {
-    this.userService.getUser(idUser).subscribe((result: { status: number, message: string, result: User }) => {
-      this.updateSelfUser = Object.assign({}, result.result);
-    })
-  }
-
 
   deleteUser(idUser: string) {
     this.userService.deleteUser(idUser).subscribe(() => this.userService.getAllUsers().subscribe((result: { status: number, message: string, result: User[] }) => {

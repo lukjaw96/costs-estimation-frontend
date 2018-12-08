@@ -1,0 +1,34 @@
+<app-settings-bar></app-settings-bar>
+<button (click)="back()">back</button>
+
+<h2>All requirements</h2>
+<table>
+  <thead>
+    <tr>
+      <th>idRequirement</th>
+      <th>name</th>
+      <th>description</th>
+      <th>author</th>
+      <th>creationDate</th>
+      <th>finalCost</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="requirements">
+    <tr *ngFor="let requirement of requirements">
+      <td>{{requirement.idRequirement}}</td>
+      <td>{{requirement.name}}</td>
+      <td>{{requirement.description}}</td>
+      <td>{{requirement.author}}</td>
+      <td>{{requirement.creationDate}}</td>
+      <td>{{requirement.finalCost}}</td>
+      <!-- <td><button *ngIf="!(user.idUser==signedUserId)" (click)="openUpdateUser(contentUpdate, user)">update user</button></td>
+      <td><button *ngIf="!(user.idUser==signedUserId)" (click)="deleteUser(user.idUser)">delete user</button></td> -->
+    </tr>
+  <tbody>
+</table>
+<button (click)="openAddRequirement(contentAdd, requirement)">add requirement</button>
+<button (click)="getAllRequirements()">refresh</button>
+
+ <ng-template #contentAdd let-modal>
+  <app-add-requirement [modal]="modal"></app-add-requirement>
+</ng-template>

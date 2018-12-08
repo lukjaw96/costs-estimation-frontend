@@ -1,0 +1,39 @@
+<app-settings-bar></app-settings-bar>
+<h2>All projects</h2>
+<table>
+  <thead>
+    <tr>
+      <th>idProject</th>
+      <th>name</th>      
+      <th>description</th>
+      <th>author</th>      
+      <th>startDate</th>
+      <th>status</th>
+      <th>endDate</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody *ngIf="projects">
+    <tr *ngFor="let project of projects">
+      <td>{{project.idProject}}</td>
+      <td>{{project.name}}</td>
+      <td>{{project.description}}</td>
+      <td>{{project.author}}</td>
+      <td>{{project.startDate}}</td>
+      <td>{{project.status}}</td>
+      <td>{{project.endDate}}</td>
+      <td><button (click)="openProjectRequirements(project)">Requirements</button></td>
+      
+    </tr>
+  <tbody>
+</table>
+<button (click)="getAllProjects()">refresh</button>
+
+<!--
+<ng-template #contentUpdate let-modal>
+  <app-update-user [modal]="modal" [updatedUserSend]="updatedUser"></app-update-user>
+</ng-template>
+
+<ng-template #contentGet let-modal>
+  <app-update-self [modal]="modal" [updateSelfUser]="updateSelfUser"></app-update-self>
+</ng-template> -->

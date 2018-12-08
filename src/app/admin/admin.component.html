@@ -1,5 +1,4 @@
-<button (click)="logout()">logout</button>
-<button (click)="openGetUser(contentGet)">My profile</button>
+<app-settings-bar></app-settings-bar>
 <h2>All users</h2>
 <table>
   <thead>
@@ -34,8 +33,4 @@
 
 <ng-template #contentUpdate let-modal>
   <app-update-user [modal]="modal" [updatedUserSend]="updatedUser"></app-update-user>
-</ng-template>
-
-<ng-template #contentGet let-modal>
-  <app-update-self [modal]="modal" [updateSelfUser]="updateSelfUser"></app-update-self>
 </ng-template>

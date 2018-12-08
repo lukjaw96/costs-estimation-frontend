@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
+import { ProjectManagerComponent } from './project-manager/project-manager.component';
+import { AnalystComponent } from './analyst/analyst.component';
+import { ProjectRequirementsComponent } from './analyst/project-requirements/project-requirements.component';
 
 const routes: Routes = [
   {
@@ -15,6 +18,18 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent
+  },
+  {
+    path: 'project_manager',
+    component: ProjectManagerComponent
+  },
+  {
+    path: 'analyst',
+    component: AnalystComponent
+  },
+  {
+    path: 'project-requirements',
+    component: ProjectRequirementsComponent
   }
 ];
 
