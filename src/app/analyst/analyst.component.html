@@ -1,4 +1,35 @@
 <app-settings-bar></app-settings-bar>
+
+<h2>All requirements</h2>
+<table>
+  <thead>
+    <tr>
+      <th>idRequirement</th>
+      <th>name</th>
+      <th>description</th>
+      <th>author</th>
+      <th>creationDate</th>
+      <th>finalCost</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="requirements">
+    <tr *ngFor="let requirement of requirements">
+      <td>{{requirement.idRequirement}}</td>
+      <td>{{requirement.name}}</td>
+      <td>{{requirement.description}}</td>
+      <td>{{requirement.author}}</td>
+      <td>{{requirement.creationDate}}</td>
+      <td>{{requirement.finalCost}}</td>      
+    </tr>
+  <tbody>
+</table>
+<button (click)="openAddRequirement(contentAdd, requirement)">add requirement</button>
+<button (click)="getAllRequirements()">refresh</button>
+
+ <ng-template #contentAdd let-modal>
+  <app-add-requirement [modal]="modal"></app-add-requirement>
+</ng-template>
+
 <h2>All projects</h2>
 <table>
   <thead>
@@ -28,12 +59,3 @@
   <tbody>
 </table>
 <button (click)="getAllProjects()">refresh</button>
-
-<!--
-<ng-template #contentUpdate let-modal>
-  <app-update-user [modal]="modal" [updatedUserSend]="updatedUser"></app-update-user>
-</ng-template>
-
-<ng-template #contentGet let-modal>
-  <app-update-self [modal]="modal" [updateSelfUser]="updateSelfUser"></app-update-self>
-</ng-template> -->

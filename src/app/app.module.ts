@@ -20,7 +20,8 @@ import { AddProjectComponent } from './project-manager/add-project/add-project.c
 import { AnalystComponent } from './analyst/analyst.component';
 import { ProjectRequirementsComponent } from './analyst/project-requirements/project-requirements.component';
 import { RequirementService } from './services/requirement/requirement.service';
-import { AddRequirementComponent } from './analyst/project-requirements/add-requirement/add-requirement.component';
+import { AddRequirementComponent } from './analyst/add-requirement/add-requirement.component';
+import { AddRequirementProjectComponent } from './analyst/project-requirements/add-requirement-project/add-requirement-project.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { AddRequirementComponent } from './analyst/project-requirements/add-requ
     AddProjectComponent,
     AnalystComponent,
     ProjectRequirementsComponent,
-    AddRequirementComponent
+    AddRequirementComponent,
+    AddRequirementProjectComponent
   ],
   imports: [
     BrowserModule,

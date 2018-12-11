@@ -22,17 +22,26 @@ export class AddRequirementComponent implements OnInit {
     finalCost: null
   }
 
+  requirements: Requirement[];
+
   constructor(
     private requirementService: RequirementService,
     private modalService: NgbModal
   ) { }
 
   ngOnInit() {
+    this.getAllRequirements();
   }
 
   addRequirement(newRequirement: Requirement) {
     this.requirementService.addRequirement(newRequirement).subscribe(() => this.requirementService.getAllRequirements().subscribe());
     this.modalService.dismissAll();
+  }
+
+  getAllRequirements() {
+    this.requirementService.getAllRequirements().subscribe((result: { status: number, message: string, result: Requirement[] }) => {
+      this.requirements = result.result;
+    });
   }
 
 }

@@ -1,0 +1,18 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Add requirement</h4>
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+  <select [(ngModel)]="selectedOption" *ngIf="requirements">
+    <option *ngFor="let requirement of requirements">{{requirement.name}}</option>
+  </select>
+
+  <button (click)="print()">print</button>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="addRequirementToProject(selectedOption)">Save</button>
+</div>

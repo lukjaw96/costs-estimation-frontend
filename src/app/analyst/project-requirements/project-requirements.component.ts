@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Requirement } from 'src/app/models/Requirement';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { RequirementService } from 'src/app/services/requirement/requirement.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ProjectService } from 'src/app/services/project/project.service';
+import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-project-requirements',
@@ -13,19 +15,23 @@ export class ProjectRequirementsComponent implements OnInit {
 
   requirements: Requirement[] = [];
   closeResult: string;
+  idProject: string;
 
   constructor(
     private requirementService: RequirementService,    
+    private projectService: ProjectService,
     private modalService: NgbModal,
-    private router: Router 
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.getAllRequirements();
+    this.idProject = this.route.snapshot.paramMap.get('idProject');
+    this.getProjectRequirements();    
   }
 
-  getAllRequirements() {
-    this.requirementService.getAllRequirements().subscribe((result: { status: number, message: string, result: Requirement[] }) => {
+  getProjectRequirements() {
+    this.projectService.getProjectRequirements(this.idProject).subscribe((result: { status: number, message: string, result: Requirement[] }) => {
       this.requirements = result.result;
     });
   }
