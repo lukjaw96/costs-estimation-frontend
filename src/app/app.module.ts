@@ -22,6 +22,11 @@ import { ProjectRequirementsComponent } from './analyst/project-requirements/pro
 import { RequirementService } from './services/requirement/requirement.service';
 import { AddRequirementComponent } from './analyst/add-requirement/add-requirement.component';
 import { AddRequirementProjectComponent } from './analyst/project-requirements/add-requirement-project/add-requirement-project.component';
+import { ExpertComponent } from './expert/expert.component';
+import { RequirementComponent } from './requirement/requirement.component';
+import { RequirementListComponent } from './requirement/requirement-list/requirement-list.component';
+import { RequirementDetailsComponent } from './requirement/requirement-details/requirement-details.component';
+import { EstimationService } from './services/estimation/estimation.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +43,11 @@ import { AddRequirementProjectComponent } from './analyst/project-requirements/a
     AnalystComponent,
     ProjectRequirementsComponent,
     AddRequirementComponent,
-    AddRequirementProjectComponent
+    AddRequirementProjectComponent,
+    ExpertComponent,
+    RequirementComponent,
+    RequirementListComponent,
+    RequirementDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +60,8 @@ import { AddRequirementProjectComponent } from './analyst/project-requirements/a
     UserService,
     LoginService,
     ProjectService,
-    RequirementService
+    RequirementService,
+    EstimationService
   ],
   bootstrap: [
     AppComponent

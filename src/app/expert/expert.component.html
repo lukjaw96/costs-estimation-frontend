@@ -1,0 +1,37 @@
+<h2>All requirements</h2>
+<table>
+  <thead>
+    <tr>
+      <th>idRequirement</th>
+      <th>name</th>
+      <th>description</th>
+      <th>author</th>
+      <th>creationDate</th>
+      <th>finalCost</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody *ngIf="requirements">
+    <tr *ngFor="let requirement of requirements">
+      <td>{{requirement.idRequirement}}</td>
+      <td>{{requirement.name}}</td>
+      <td>{{requirement.description}}</td>
+      <td>{{requirement.author}}</td>
+      <td>{{requirement.creationDate}}</td>
+      <td>{{requirement.finalCost}}</td>
+      <td>
+        <button (click)="goToRequirementDetails(requirement)">details</button>
+      </td>
+      <td>
+          <label for="estimation">estimation</label>
+          <input type="text" class="form-control" name="estimation" [(ngModel)]="estimation" >
+        <button (click)="addEstimationToRequirement(requirement.idRequirement)">add estimation</button>
+      </td>      
+    </tr>
+  <tbody>
+</table>
+
+<ng-template #contentDetails let-modal>
+  <app-requirement-details></app-requirement-details>
+</ng-template>

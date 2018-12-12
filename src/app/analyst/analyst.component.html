@@ -19,14 +19,14 @@
       <td>{{requirement.description}}</td>
       <td>{{requirement.author}}</td>
       <td>{{requirement.creationDate}}</td>
-      <td>{{requirement.finalCost}}</td>      
+      <td>{{requirement.finalCost}}</td>
     </tr>
   <tbody>
 </table>
 <button (click)="openAddRequirement(contentAdd, requirement)">add requirement</button>
 <button (click)="getAllRequirements()">refresh</button>
 
- <ng-template #contentAdd let-modal>
+<ng-template #contentAdd let-modal>
   <app-add-requirement [modal]="modal"></app-add-requirement>
 </ng-template>
 
@@ -35,9 +35,9 @@
   <thead>
     <tr>
       <th>idProject</th>
-      <th>name</th>      
+      <th>name</th>
       <th>description</th>
-      <th>author</th>      
+      <th>author</th>
       <th>startDate</th>
       <th>status</th>
       <th>endDate</th>
@@ -54,7 +54,7 @@
       <td>{{project.status}}</td>
       <td>{{project.endDate}}</td>
       <td><button (click)="openProjectRequirements(project)">Requirements</button></td>
-      
+
     </tr>
   <tbody>
 </table>
