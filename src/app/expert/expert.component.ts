@@ -39,12 +39,14 @@ export class ExpertComponent implements OnInit {
     this.router.navigate(['/requirement-details', { requirement: JSON.stringify(requirement) }]);
   }
 
-  addEstimationToRequirement(idRequirement: number) {
+  addEstimationToRequirement(idRequirement: number, i: string) {
+    let estimationValue = parseInt((document.getElementsByName(i)[0] as HTMLInputElement ).value);
     let estimation: Estimation = {
       idEstimation: null,
       idUser: parseInt(this.signedUserId),
       idRequirement: idRequirement,
-      estimation: parseInt(this.estimation)
+      //estimation: parseInt(this.estimation)
+      estimation: estimationValue
     }
     this.estimationService.addEstimation(estimation).subscribe();
   }

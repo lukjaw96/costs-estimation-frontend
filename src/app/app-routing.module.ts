@@ -7,6 +7,8 @@ import { AnalystComponent } from './analyst/analyst.component';
 import { ProjectRequirementsComponent } from './analyst/project-requirements/project-requirements.component';
 import { ExpertComponent } from './expert/expert.component';
 import { RequirementDetailsComponent } from './requirement/requirement-details/requirement-details.component';
+import { ProjectDetailsMoreComponent } from './project-manager/project-details-more/project-details-more.component';
+import { RequirementDetailsMoreComponent } from './project-manager/requirement-details-more/requirement-details-more.component';
 
 const routes: Routes = [
   {
@@ -40,6 +42,14 @@ const routes: Routes = [
   {
     path: 'requirement-details',
     component: RequirementDetailsComponent
+  },
+  {
+    path: 'project-details-more',
+    component: ProjectDetailsMoreComponent
+  },
+  {
+    path: 'requirement-details-more',
+    component: RequirementDetailsMoreComponent
   }
 ];
 

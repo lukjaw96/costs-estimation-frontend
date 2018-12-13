@@ -27,6 +27,8 @@ import { RequirementComponent } from './requirement/requirement.component';
 import { RequirementListComponent } from './requirement/requirement-list/requirement-list.component';
 import { RequirementDetailsComponent } from './requirement/requirement-details/requirement-details.component';
 import { EstimationService } from './services/estimation/estimation.service';
+import { ProjectDetailsMoreComponent } from './project-manager/project-details-more/project-details-more.component';
+import { RequirementDetailsMoreComponent } from './project-manager/requirement-details-more/requirement-details-more.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { EstimationService } from './services/estimation/estimation.service';
     ExpertComponent,
     RequirementComponent,
     RequirementListComponent,
-    RequirementDetailsComponent
+    RequirementDetailsComponent,
+    ProjectDetailsMoreComponent,
+    RequirementDetailsMoreComponent
   ],
   imports: [
     BrowserModule,

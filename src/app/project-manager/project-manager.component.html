@@ -10,6 +10,7 @@
       <th>startDate</th>
       <th>status</th>
       <th>endDate</th>
+      <th></th>
     </tr>
   </thead>
   <tbody *ngIf="projects">
@@ -21,6 +22,9 @@
       <td>{{project.startDate}}</td>
       <td>{{project.status}}</td>
       <td>{{project.endDate}}</td>
+      <td>
+        <button (click)="goToProjectDetails(project)">szczegoly</button>
+      </td>
 
 
 
@@ -44,3 +48,31 @@
 <ng-template #contentGet let-modal>
   <app-update-self [modal]="modal" [updateSelfUser]="updateSelfUser"></app-update-self>
 </ng-template> -->
+
+<h2>All requirements</h2>
+<table>
+  <thead>
+    <tr>
+      <th>idRequirement</th>
+      <th>name</th>
+      <th>description</th>
+      <th>author</th>
+      <th>creationDate</th>
+      <th>finalCost</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody *ngIf="requirements">
+    <tr *ngFor="let requirement of requirements">
+      <td>{{requirement.idRequirement}}</td>
+      <td>{{requirement.name}}</td>
+      <td>{{requirement.description}}</td>
+      <td>{{requirement.author}}</td>
+      <td>{{requirement.creationDate}}</td>
+      <td>{{requirement.finalCost}}</td>      
+      <td>
+        <button (click)="goToRequirementDetails(requirement)">details</button>
+      </td>
+    </tr>
+  <tbody>
+</table>

@@ -1,0 +1,48 @@
+<p>
+  requirement-details-more works!
+</p>
+<h2>Requirement {{requirement.idRequirement}}</h2>
+<table>
+  <thead>
+    <tr>
+      <th>idRequirement</th>
+      <th>name</th>
+      <th>description</th>
+      <th>author</th>
+      <th>creationDate</th>
+      <th>finalCost</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{requirement.idRequirement}}</td>
+      <td>{{requirement.name}}</td>
+      <td>{{requirement.description}}</td>
+      <td>{{requirement.author}}</td>
+      <td>{{requirement.creationDate}}</td>
+      <td>{{requirement.finalCost}}</td>     
+    </tr>
+  <tbody>
+</table>
+
+<h2>All estimations</h2>
+<table>
+  <thead>
+    <tr>
+      <th>idEstimation</th>
+      <th>idUser</th>
+      <th>idRequirement</th>
+      <th>estimation</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="requirementEstimations">
+    <tr *ngFor="let estiamtion of requirementEstimations">
+      <td>{{estiamtion.idEstimation}}</td>
+      <td>{{estiamtion.idUser}}</td>
+      <td>{{estiamtion.idRequirement}}</td>
+      <td>{{estiamtion.estimation}}</td>
+    </tr>
+  <tbody>
+</table>

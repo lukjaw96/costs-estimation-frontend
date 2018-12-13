@@ -27,6 +27,10 @@ export class ProjectService {
     return this.http.post<Project>(`${this.rootAddress}/projects/add`, project, this.getHttpHeaders());
   }
 
+  getProject(idProject: string) {
+    return this.http.get(`${this.rootAddress}/projects/${idProject}`, this.getHttpHeaders());
+  }
+
   addRequirementToProject(idProject: string, idRequirement: string) {
     return this.http.post<string>(`${this.rootAddress}/projects/${idProject}/requirements/add/${idRequirement}`, null, this.getHttpHeaders());
   }

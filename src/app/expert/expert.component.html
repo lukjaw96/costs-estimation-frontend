@@ -1,3 +1,4 @@
+<app-settings-bar></app-settings-bar>
 <h2>All requirements</h2>
 <table>
   <thead>
@@ -13,7 +14,7 @@
     </tr>
   </thead>
   <tbody *ngIf="requirements">
-    <tr *ngFor="let requirement of requirements">
+    <tr *ngFor="let requirement of requirements; let i = index">
       <td>{{requirement.idRequirement}}</td>
       <td>{{requirement.name}}</td>
       <td>{{requirement.description}}</td>
@@ -25,8 +26,8 @@
       </td>
       <td>
           <label for="estimation">estimation</label>
-          <input type="text" class="form-control" name="estimation" [(ngModel)]="estimation" >
-        <button (click)="addEstimationToRequirement(requirement.idRequirement)">add estimation</button>
+          <input type="text" class="form-control" name={{i}} >
+        <button (click)="addEstimationToRequirement(requirement.idRequirement, i)">add estimation</button>
       </td>      
     </tr>
   <tbody>

@@ -3,6 +3,9 @@ import { Project } from '../models/Project';
 import { UserService } from '../services/user/user.service';
 import { ProjectService } from '../services/project/project.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
+import { Requirement } from '../models/Requirement';
+import { RequirementService } from '../services/requirement/requirement.service';
 
 @Component({
   selector: 'app-project-manager',
@@ -12,21 +15,36 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class ProjectManagerComponent implements OnInit {
 
   projects: Project[] = [];
+  requirements: Requirement[] = [];
   closeResult: string;
 
   constructor(
     private projectService: ProjectService,
+    private requirementService: RequirementService,
     private modalService: NgbModal,
+    private router: Router
   ) { }
 
   ngOnInit() {
     this.getAllProjects();
+    this.requirementService.getAllRequirements().subscribe((result: { status: number, message: string, result: Requirement[] }) => {
+      this.requirements = result.result;
+      console.log(this.requirements);
+    })
   }
 
   getAllProjects() {
     this.projectService.getAllProjects().subscribe((result: { status: number, message: string, result: Project[] }) => {
       this.projects = result.result;
     });
+  }
+
+  goToProjectDetails(project: Project) {
+    this.router.navigate(['project-details-more', { idProject: project.idProject }]);
+  }
+
+  goToRequirementDetails(requirement: Requirement) {
+    this.router.navigate(['requirement-details-more', { idRequirement: requirement.idRequirement }]);
   }
 
   openAddProject(content) {
