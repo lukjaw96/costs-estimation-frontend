@@ -21,6 +21,8 @@ export class UpdateUserComponent implements OnInit {
     password: null,
     role: null
   };
+
+  roles: String[] = ["PROJECT_MANAGER", "ANALYST", "EXPERT", "ADMIN"];
   
   constructor(private userService: UserService, private modalService: NgbModal) { }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from 'src/app/models/Project';
 import { ProjectService } from 'src/app/services/project/project.service';
 import { Requirement } from 'src/app/models/Requirement';
@@ -25,7 +25,8 @@ export class ProjectDetailsMoreComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -33,5 +34,9 @@ export class ProjectDetailsMoreComponent implements OnInit {
     this.projectService.getProject(this.idProject).subscribe((result: { status: number, message: string, result: Project }) => this.project = result.result);
     this.projectService.getProjectRequirements(this.idProject).subscribe((result: { status: number, message: string, result: Requirement[] }) => {this.projectRequirements = result.result; console.log("requirements", this.projectRequirements);});
   
+  }
+
+  back() {
+    this.router.navigate(["/project_manager"]);
   }
 }

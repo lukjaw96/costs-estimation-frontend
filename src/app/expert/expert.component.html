@@ -25,10 +25,19 @@
         <button (click)="goToRequirementDetails(requirement)">details</button>
       </td>
       <td>
-          <label for="estimation">estimation</label>
-          <input type="text" class="form-control" name={{i}} >
-        <button (click)="addEstimationToRequirement(requirement.idRequirement, i)">add estimation</button>
-      </td>      
+
+        <div class="row">
+          <div>
+              <input placeholder="estimation" type="text" class="form-control" name={{i}}>
+          </div>
+          
+          <div>
+              <button (click)="addEstimationToRequirement(requirement.idRequirement, i)">add estimation</button>
+          </div>
+          
+        </div>
+
+      </td>
     </tr>
   <tbody>
 </table>

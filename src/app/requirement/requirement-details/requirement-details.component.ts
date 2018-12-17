@@ -1,3 +1,4 @@
+import {Location} from '@angular/common';
 import { Component, OnInit, Input } from '@angular/core';
 import { RequiredValidator } from '@angular/forms';
 import { Requirement } from 'src/app/models/Requirement';
@@ -14,7 +15,8 @@ export class RequirementDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private _location: Location
   ) { }
 
   ngOnInit() {
@@ -22,7 +24,9 @@ export class RequirementDetailsComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(["/expert"]);
+    //this.router.navigate(["/expert"]);
+    this._location.back();
   }
+
 
 }

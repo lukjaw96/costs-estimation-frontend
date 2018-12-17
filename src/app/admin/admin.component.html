@@ -1,36 +1,38 @@
-<app-settings-bar></app-settings-bar>
-<h2>All users</h2>
-<table>
-  <thead>
-    <tr>
-      <th>idUser</th>
-      <th>firstName</th>
-      <th>lastName</th>
-      <th>username</th>
-      <th>role</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody *ngIf="users">
-    <tr *ngFor="let user of users">
-      <td>{{user.idUser}}</td>
-      <td>{{user.firstName}}</td>
-      <td>{{user.lastName}}</td>
-      <td>{{user.username}}</td>
-      <td>{{user.role}}</td>
-      <td><button *ngIf="!(user.idUser==signedUserId)" (click)="openUpdateUser(contentUpdate, user)">update user</button></td>
-      <td><button *ngIf="!(user.idUser==signedUserId)" (click)="deleteUser(user.idUser)">delete user</button></td>
-    </tr>
-  <tbody>
-</table>
-<button (click)="openAddUser(contentAdd, user)">add user</button>
-<button (click)="getAllUsers()">refresh</button>
+<div class="wrapper">
+  <app-settings-bar></app-settings-bar>
+  <h2>All users</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>idUser</th>
+        <th>firstName</th>
+        <th>lastName</th>
+        <th>username</th>
+        <th>role</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody *ngIf="users">
+      <tr *ngFor="let user of users">
+        <td>{{user.idUser}}</td>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.username}}</td>
+        <td>{{user.role}}</td>
+        <td><button *ngIf="!(user.idUser==signedUserId)" (click)="openUpdateUser(contentUpdate, user)">update user</button></td>
+        <td><button *ngIf="!(user.idUser==signedUserId)" (click)="deleteUser(user.idUser)">delete user</button></td>
+      </tr>
+    <tbody>
+  </table>
+  <button (click)="openAddUser(contentAdd, user)">add user</button>
+  <button (click)="getAllUsers()">refresh</button>
 
-<ng-template #contentAdd let-modal>
-  <app-add-user [modal]="modal"></app-add-user>
-</ng-template>
+  <ng-template #contentAdd let-modal>
+    <app-add-user [modal]="modal"></app-add-user>
+  </ng-template>
 
-<ng-template #contentUpdate let-modal>
-  <app-update-user [modal]="modal" [updatedUserSend]="updatedUser"></app-update-user>
-</ng-template>
+  <ng-template #contentUpdate let-modal>
+    <app-update-user [modal]="modal" [updatedUserSend]="updatedUser"></app-update-user>
+  </ng-template>
+</div>
