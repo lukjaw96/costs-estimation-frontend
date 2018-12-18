@@ -25,5 +25,9 @@ export class EstimationService {
   addEstimation(estimation: Estimation) {
     return this.http.post<Estimation>(`${this.rootAddress}/estimations/add`, estimation, this.getHttpHeaders());
   }
+
+  getEstimationsRanges() {
+    return this.http.get(`${this.rootAddress}/estimations/ranges`, this.getHttpHeaders());
+  }
   
 }
