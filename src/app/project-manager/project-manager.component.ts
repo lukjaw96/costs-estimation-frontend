@@ -6,6 +6,8 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { Requirement } from '../models/Requirement';
 import { RequirementService } from '../services/requirement/requirement.service';
+import { Estimation } from '../models/Estimation';
+import * as Chart from 'chart.js'
 
 @Component({
   selector: 'app-project-manager',
@@ -17,6 +19,12 @@ export class ProjectManagerComponent implements OnInit {
   projects: Project[] = [];
   requirements: Requirement[] = [];
   closeResult: string;
+  requirementsParams: { minimum: number, maximum: number, idReq: number, average: number }[] = [];
+
+
+  requirementEstimations: Estimation[] = [];
+  canvas: any;
+  ctx: any;
 
   constructor(
     private projectService: ProjectService,
@@ -25,11 +33,73 @@ export class ProjectManagerComponent implements OnInit {
     private router: Router
   ) { }
 
+  ngAfterViewInit() {
+    this.requirementService.getRequirementsParams().subscribe((result: { status: number, message: string, result: { minimum: number, maximum: number, idReq: number, average: number }[] }) => {
+      this.requirementsParams = result.result;
+
+      let labels: string[] = [];
+      let minimums: number[] = [];
+      let maximums: number[] = [];
+      let averages: number[] = [];
+      let minimumsBackgroundColor: string[] = [];
+      let maksimumsBackgroundColor: string[] = [];
+      let averagesBackgroundColor: string[] = [];
+
+      result.result.forEach(element => {
+        labels.push("req" + element.idReq.toString());
+        minimums.push(element.minimum);
+        maximums.push(element.maximum);
+        averages.push(element.average);
+
+        minimumsBackgroundColor.push('rgba(0, 173, 171, 1)');
+        maksimumsBackgroundColor.push('rgba(248, 181, 0, 1)');
+        averagesBackgroundColor.push('rgba(252, 60, 60, 1)');
+
+      });
+
+      if (labels != []) {
+        this.canvas = document.getElementById('requirementsChartCanvas');
+        this.ctx = this.canvas.getContext('2d');
+
+        let requirementsChart = new Chart(this.ctx, {
+          type: 'bar',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'minimums',
+              data: minimums,
+              backgroundColor: minimumsBackgroundColor,
+              borderWidth: 1
+            },
+            {
+              label: 'maximums',
+              data: maximums,
+              backgroundColor: maksimumsBackgroundColor,
+              borderWidth: 1
+            },
+            {
+              label: 'averages',
+              data: averages,
+              backgroundColor: averagesBackgroundColor,
+              borderWidth: 1
+            }
+            ]
+          },
+          options: {
+            responsive: false
+          }
+        });
+      }
+    })
+  }
+
   ngOnInit() {
     this.getAllProjects();
     this.requirementService.getAllRequirements().subscribe((result: { status: number, message: string, result: Requirement[] }) => {
       this.requirements = result.result;
-      console.log(this.requirements);
+    })
+    this.requirementService.getRequirementsParams().subscribe((result: { status: number, message: string, result: { minimum: number, maximum: number, idReq: number, average: number }[] }) => {
+      this.requirementsParams = result.result;
     })
   }
 

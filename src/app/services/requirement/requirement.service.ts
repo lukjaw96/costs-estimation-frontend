@@ -34,4 +34,8 @@ export class RequirementService {
   getRequirementEstimations(idRequirement: string) {
     return this.http.get(`${this.rootAddress}/requirements/${idRequirement}/estimations`, this.getHttpHeaders());
   }
+
+  getRequirementsParams() {
+    return this.http.get(`${this.rootAddress}/requirements/params`, this.getHttpHeaders());
+  }
 }
