@@ -137,8 +137,16 @@ export class ProjectManagerComponent implements OnInit {
             ]
           },
           options: {
-            responsive: false
-          }
+            responsive: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+
         });
       }
     })
@@ -210,8 +218,15 @@ export class ProjectManagerComponent implements OnInit {
             ]
           },
           options: {
-            responsive: false
-          }
+            responsive: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
         });
       }
     })
