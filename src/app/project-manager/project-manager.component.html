@@ -24,12 +24,7 @@
       <td>{{project.endDate}}</td>
       <td>
         <button (click)="goToProjectDetails(project)">szczegoly</button>
-      </td>
-
-
-
-      <!-- <td><button *ngIf="!(user.idUser==signedUserId)" (click)="openUpdateUser(contentUpdate, user)">update user</button></td>
-      <td><button *ngIf="!(user.idUser==signedUserId)" (click)="deleteUser(user.idUser)">delete user</button></td> -->
+      </td>      
     </tr>
   <tbody>
 </table>
@@ -39,15 +34,6 @@
  <ng-template #contentAdd let-modal>
   <app-add-project [modal]="modal"></app-add-project>
 </ng-template>
-
-<!--
-<ng-template #contentUpdate let-modal>
-  <app-update-user [modal]="modal" [updatedUserSend]="updatedUser"></app-update-user>
-</ng-template>
-
-<ng-template #contentGet let-modal>
-  <app-update-self [modal]="modal" [updateSelfUser]="updateSelfUser"></app-update-self>
-</ng-template> -->
 
 <h2>All requirements</h2>
 <table>

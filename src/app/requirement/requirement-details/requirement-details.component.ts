@@ -24,9 +24,6 @@ export class RequirementDetailsComponent implements OnInit {
   }
 
   back() {
-    //this.router.navigate(["/expert"]);
     this._location.back();
   }
-
-
 }

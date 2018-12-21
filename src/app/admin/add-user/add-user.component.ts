@@ -52,14 +52,9 @@ export class AddUserComponent implements OnInit {
   get username() { return this.profileForm.get('username'); }
   get password() { return this.profileForm.get('password'); }
 
-
-
-
   onSubmit(newUser: User) {
     Object.assign(newUser, this.profileForm.value);
     this.userService.addUser(newUser).subscribe(() => this.userService.getAllUsers().subscribe());
     this.modalService.dismissAll();
-
-    
   }
 }

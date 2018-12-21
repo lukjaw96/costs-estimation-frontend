@@ -38,7 +38,6 @@ export class RequirementDetailsMoreComponent implements OnInit {
     this.requirementService.getRequirement(this.idRequirement).subscribe((result: { status: number, message: string, result: Requirement }) => { this.requirement = result.result; console.log("requirement", this.requirement) });
     this.requirementService.getRequirementEstimations(this.idRequirement).subscribe((result: { status: number, message: string, result: Estimation[] }) => {
       this.requirementEstimations = result.result;
-      console.log("estimations", this.requirementEstimations);
 
       if (this.requirementEstimations[0] != undefined) {
         this.canvas = document.getElementById('requirementsChartCanvas');

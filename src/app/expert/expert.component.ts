@@ -45,7 +45,6 @@ export class ExpertComponent implements OnInit {
       idEstimation: null,
       idUser: parseInt(this.signedUserId),
       idRequirement: idRequirement,
-      //estimation: parseInt(this.estimation)
       estimation: estimationValue
     }
     this.estimationService.addEstimation(estimation).subscribe();
