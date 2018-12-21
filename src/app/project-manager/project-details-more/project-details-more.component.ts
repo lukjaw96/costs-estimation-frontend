@@ -32,7 +32,7 @@ export class ProjectDetailsMoreComponent implements OnInit {
   ngOnInit() {
     this.idProject = this.route.snapshot.paramMap.get('idProject');
     this.projectService.getProject(this.idProject).subscribe((result: { status: number, message: string, result: Project }) => this.project = result.result);
-    this.projectService.getProjectRequirements(this.idProject).subscribe((result: { status: number, message: string, result: Requirement[] }) => {this.projectRequirements = result.result; console.log("requirements", this.projectRequirements);});
+    this.projectService.getProjectRequirements(this.idProject).subscribe((result: { status: number, message: string, result: Requirement[] }) => {this.projectRequirements = result.result});
   
   }
 

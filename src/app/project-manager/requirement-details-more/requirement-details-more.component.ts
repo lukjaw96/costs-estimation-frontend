@@ -35,7 +35,7 @@ export class RequirementDetailsMoreComponent implements OnInit {
   ngAfterViewInit() {
 
     this.idRequirement = this.route.snapshot.paramMap.get('idRequirement');
-    this.requirementService.getRequirement(this.idRequirement).subscribe((result: { status: number, message: string, result: Requirement }) => { this.requirement = result.result; console.log("requirement", this.requirement) });
+    this.requirementService.getRequirement(this.idRequirement).subscribe((result: { status: number, message: string, result: Requirement }) => { this.requirement = result.result });
     this.requirementService.getRequirementEstimations(this.idRequirement).subscribe((result: { status: number, message: string, result: Estimation[] }) => {
       this.requirementEstimations = result.result;
 
