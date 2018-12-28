@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User } from 'src/app/models/User';
 import { UserPasswordUpdate } from 'src/app/models/UserPasswordUpdate';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  rootAddress: string = "http://localhost:8080";
+  private rootAddress: string = environment.API_URL;
+  //rootAddress: string = "http://localhost:8080";
 
   constructor( private http: HttpClient ) { }
 
