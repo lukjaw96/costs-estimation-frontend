@@ -24,13 +24,13 @@ export class UpdateSelfComponent implements OnInit {
   ngOnInit() {
   }
 
-  openUpdateUserPassword(content, idUser: string) {
+  openUpdateUserPassword(content, idUser: number) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
     });
-    this.idUser = idUser;
+    this.idUser = idUser.toString();
   }
 
   updateUserSelf(updatedUser: User) {
