@@ -1,3 +1,7 @@
 .requirements-container {
     padding-bottom: 30px;
 }
+
+.btn-add-requirement {
+    margin-right: 5px;
+}

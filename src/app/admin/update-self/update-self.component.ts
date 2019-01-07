@@ -34,7 +34,7 @@ export class UpdateSelfComponent implements OnInit {
   }
 
   updateUserSelf(updatedUser: User) {
-    this.userService.updateSelf(updatedUser).subscribe(() => this.userService.getAllUsers().subscribe());
+    this.userService.updateSelf(updatedUser).subscribe();
     this.modalService.dismissAll();
   }
 

@@ -3,7 +3,7 @@ import { Project } from '../models/Project';
 import { UserService } from '../services/user/user.service';
 import { ProjectService } from '../services/project/project.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
+import { Router, Route, ActivatedRoute } from '@angular/router';
 import { Requirement } from '../models/Requirement';
 import { RequirementService } from '../services/requirement/requirement.service';
 import { Estimation } from '../models/Estimation';
@@ -21,6 +21,7 @@ export class ProjectManagerComponent implements OnInit {
   requirements: Requirement[] = [];
   closeResult: string;
   requirementsParams: { minimum: number, maximum: number, idReq: number, average: number }[] = [];
+  signedUserId: string;
 
 
   requirementEstimations: Estimation[] = [];
@@ -33,7 +34,8 @@ export class ProjectManagerComponent implements OnInit {
     private estimationService: EstimationService,
     private requirementService: RequirementService,
     private modalService: NgbModal,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngAfterViewInit() {
@@ -50,6 +52,7 @@ export class ProjectManagerComponent implements OnInit {
     this.requirementService.getRequirementsParams().subscribe((result: { status: number, message: string, result: { minimum: number, maximum: number, idReq: number, average: number }[] }) => {
       this.requirementsParams = result.result;
     })
+    this.signedUserId = this.route.snapshot.paramMap.get('id');
   }
 
   getAllProjects() {
@@ -59,11 +62,11 @@ export class ProjectManagerComponent implements OnInit {
   }
 
   goToProjectDetails(project: Project) {
-    this.router.navigate(['project-details-more', { idProject: project.idProject }]);
+    this.router.navigate(['project-details-more', { idProject: project.idProject, id: this.signedUserId }]);
   }
 
   goToRequirementDetails(requirement: Requirement) {
-    this.router.navigate(['requirement-details-more', { idRequirement: requirement.idRequirement }]);
+    this.router.navigate(['requirement-details-more', { idRequirement: requirement.idRequirement, id: this.signedUserId }]);
   }
 
   openAddProject(content) {

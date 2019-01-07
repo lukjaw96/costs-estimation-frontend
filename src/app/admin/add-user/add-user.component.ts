@@ -3,6 +3,8 @@ import { User } from 'src/app/models/User';
 import { UserService } from 'src/app/services/user/user.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { RoleService } from 'src/app/services/role/role.service';
+import { Role } from 'src/app/models/Role';
 
 @Component({
   selector: 'app-add-user',
@@ -22,7 +24,8 @@ export class AddUserComponent implements OnInit {
     role: null,
   }
 
-  roles: String[] = ["PROJECT_MANAGER", "ANALYST", "EXPERT", "ADMIN"];
+  roles: Role[] = [];
+  rolesCodes: string[] = [];
 
 
   profileForm: FormGroup;
@@ -30,7 +33,8 @@ export class AddUserComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private roleService: RoleService
   ) { }
 
   ngOnInit() {
@@ -47,6 +51,7 @@ export class AddUserComponent implements OnInit {
       ]),
       role: new FormControl('')
     });
+    this.getAllRoles();    
   }
 
   get username() { return this.profileForm.get('username'); }
@@ -54,7 +59,21 @@ export class AddUserComponent implements OnInit {
 
   onSubmit(newUser: User) {
     Object.assign(newUser, this.profileForm.value);
+    
+    if(newUser.role=="") {
+      this.newUser.role = this.roles[0].code;
+    }
     this.userService.addUser(newUser).subscribe(() => this.userService.getAllUsers().subscribe());
     this.modalService.dismissAll();
+  }
+
+  getAllRoles() {
+    this.roleService.getAllRoles().subscribe((result: { status: number, message: string, result: Role[] }) => {
+      this.roles = result.result;
+      this.newUser.role = this.roles[0].code;
+      this.roles.map(role => {
+        this.rolesCodes.push(role.code);
+      })
+    });
   }
 }

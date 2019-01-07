@@ -1,27 +1,15 @@
 <app-settings-bar></app-settings-bar>
-<button (click)="back()">back</button>
+<button type="button" class="btn btn-primary" (click)="back()">Back</button>
 <h2>Project {{project.idProject}}</h2>
-<table>
-  <thead>
-    <tr>
-      <th>idProject</th>
-      <th>name</th>      
-      <th>description</th>
-      <th>author</th>      
-      <th>startDate</th>
-      <th>status</th>
-      <th>endDate</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>{{project.idProject}}</td>
-      <td>{{project.name}}</td>
-      <td>{{project.description}}</td>
-      <td>{{project.author}}</td>
-      <td>{{project.startDate}}</td>
-      <td>{{project.status}}</td>
-      <td>{{project.endDate}}</td>
-    </tr>
-  <tbody>
-</table>
+<h3>Name</h3>
+<p>{{project.name}}</p>
+<h3>Description</h3>
+<p>{{project.description}}</p>
+<h3>Author</h3>
+<p>{{project.author}}</p>
+<h3>Start date</h3>
+<p>{{project.startDate}}</p>
+<h3>Status</h3>
+<p>{{project.status}}</p>
+<h3>End date</h3>
+<p>{{project.endDate}}</p>

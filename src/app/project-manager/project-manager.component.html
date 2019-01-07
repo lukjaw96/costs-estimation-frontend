@@ -1,16 +1,16 @@
 <app-settings-bar></app-settings-bar>
 <h2>All projects</h2>
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>idProject</th>
-      <th>name</th>      
-      <th>description</th>
-      <th>author</th>      
-      <th>startDate</th>
-      <th>status</th>
-      <th>endDate</th>
-      <th></th>
+      <th scope="col">id</th>
+      <th scope="col">name</th>      
+      <th scope="col">description</th>
+      <th scope="col">author</th>      
+      <th scope="col">start date</th>
+      <th scope="col">status</th>
+      <th scope="col">end date</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody *ngIf="projects">
@@ -23,29 +23,29 @@
       <td>{{project.status}}</td>
       <td>{{project.endDate}}</td>
       <td>
-        <button (click)="goToProjectDetails(project)">szczegoly</button>
+        <button type="button" class="btn btn-secondary" (click)="goToProjectDetails(project)">Details</button>
       </td>      
     </tr>
   <tbody>
 </table>
-<button (click)="openAddProject(contentAdd)">add project</button>
-<button (click)="getAllProjects()">refresh</button>
+<button type="button" class="btn btn-primary btn-add-project" (click)="openAddProject(contentAdd)">Add project</button>
+<button type="button" class="btn btn-primary" (click)="getAllProjects()">Refresh</button>
 
  <ng-template #contentAdd let-modal>
   <app-add-project [modal]="modal"></app-add-project>
 </ng-template>
 
 <h2>All requirements</h2>
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>idRequirement</th>
-      <th>name</th>
-      <th>description</th>
-      <th>author</th>
-      <th>creationDate</th>
-      <th>finalCost</th>
-      <th></th>
+      <th scope="col">id</th>
+      <th scope="col">name</th>
+      <th scope="col">description</th>
+      <th scope="col">author</th>
+      <th scope="col">creation date</th>
+      <th scope="col">final cost</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody *ngIf="requirements">
@@ -57,7 +57,7 @@
       <td>{{requirement.creationDate}}</td>
       <td>{{requirement.finalCost}}</td>      
       <td>
-        <button (click)="goToRequirementDetails(requirement)">details</button>
+        <button type="button" class="btn btn-secondary" (click)="goToRequirementDetails(requirement)">Details</button>
       </td>
     </tr>
   <tbody>

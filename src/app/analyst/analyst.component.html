@@ -1,15 +1,15 @@
 <app-settings-bar></app-settings-bar>
 <div class="requirements-container">
   <h2>All requirements</h2>
-  <table>
+  <table class="table">
     <thead>
       <tr>
-        <th>idRequirement</th>
-        <th>name</th>
-        <th>description</th>
-        <th>author</th>
-        <th>creationDate</th>
-        <th>finalCost</th>
+        <th scope="col">id</th>
+        <th scope="col">name</th>
+        <th scope="col">description</th>
+        <th scope="col">author</th>
+        <th scope="col">creation date</th>
+        <th scope="col">final cost</th>
       </tr>
     </thead>
     <tbody *ngIf="requirements">
@@ -23,25 +23,25 @@
       </tr>
     <tbody>
   </table>
-  <button (click)="openAddRequirement(contentAdd)">add requirement</button>
-  <button (click)="getAllRequirements()">refresh</button>
+  <button type="button" class="btn btn-primary btn-add-requirement" (click)="openAddRequirement(contentAdd)">Add requirement</button>
+  <button type="button" class="btn btn-primary" (click)="getAllRequirements()">Refresh</button>
 </div>
 <ng-template #contentAdd let-modal>
   <app-add-requirement [modal]="modal"></app-add-requirement>
 </ng-template>
 
 <h2>All projects</h2>
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>idProject</th>
-      <th>name</th>
-      <th>description</th>
-      <th>author</th>
-      <th>startDate</th>
-      <th>status</th>
-      <th>endDate</th>
-      <th></th>
+      <th scope="col">id</th>
+      <th scope="col">name</th>
+      <th scope="col">description</th>
+      <th scope="col">author</th>
+      <th scope="col">start date</th>
+      <th scope="col">status</th>
+      <th scope="col">end date</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody *ngIf="projects">
@@ -53,9 +53,9 @@
       <td>{{project.startDate}}</td>
       <td>{{project.status}}</td>
       <td>{{project.endDate}}</td>
-      <td><button (click)="openProjectRequirements(project)">Requirements</button></td>
+      <td><button type="button" class="btn btn-secondary" (click)="openProjectRequirements(project)">Requirements</button></td>
 
     </tr>
   <tbody>
 </table>
-<button (click)="getAllProjects()">refresh</button>
+<button type="button" class="btn btn-primary" (click)="getAllProjects()">Refresh</button>

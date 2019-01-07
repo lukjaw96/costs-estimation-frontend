@@ -21,16 +21,24 @@ export class RequirementService {
     }
   }
 
-  getRequirement(idRequirement: string) {
-    return this.http.get(`${this.rootAddress}/requirements/${idRequirement}`, this.getHttpHeaders());
-  }
-
   getAllRequirements() {
     return this.http.get(`${this.rootAddress}/requirements`, this.getHttpHeaders());
   }
 
+  getRequirement(idRequirement: string) {
+    return this.http.get(`${this.rootAddress}/requirements/${idRequirement}`, this.getHttpHeaders());
+  }
+
   addRequirement(requirement: Requirement) {
     return this.http.post<Requirement>(`${this.rootAddress}/requirements/add`, requirement, this.getHttpHeaders());
+  }
+
+  updateRequirement(requirement: Requirement) {
+    return this.http.put<Requirement>(`${this.rootAddress}/requirements/${requirement.idRequirement}`, requirement, this.getHttpHeaders());
+  }
+
+  deleteRequirement(idRequirement: string) {
+    return this.http.delete<Requirement>(`${this.rootAddress}/requirements/${idRequirement}`, this.getHttpHeaders());
   }
 
   getRequirementEstimations(idRequirement: string) {

@@ -1,14 +1,14 @@
 <app-settings-bar></app-settings-bar>
 <h2>All requirements</h2>
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>idRequirement</th>
+      <th>id</th>
       <th>name</th>
       <th>description</th>
       <th>author</th>
-      <th>creationDate</th>
-      <th>finalCost</th>
+      <th>creation date</th>
+      <th>final cost</th>
       <th></th>
       <th></th>
     </tr>
@@ -22,21 +22,17 @@
       <td>{{requirement.creationDate}}</td>
       <td>{{requirement.finalCost}}</td>
       <td>
-        <button (click)="goToRequirementDetails(requirement)">details</button>
+        <button type="button" class="btn btn-secondary" (click)="goToRequirementDetails(requirement)">Details</button>
       </td>
       <td>
-
         <div class="row">
           <div>
               <input placeholder="estimation" type="text" class="form-control" name={{i}}>
-          </div>
-          
+          </div>          
           <div>
-              <button (click)="addEstimationToRequirement(requirement.idRequirement, i)">add estimation</button>
-          </div>
-          
+            <button type="button" class="btn btn-primary btn-add-estimation" (click)="addEstimationToRequirement(requirement.idRequirement, i)">Add estimation</button>
+          </div>          
         </div>
-
       </td>
     </tr>
   <tbody>

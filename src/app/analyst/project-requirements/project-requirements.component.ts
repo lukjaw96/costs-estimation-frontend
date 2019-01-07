@@ -16,6 +16,7 @@ export class ProjectRequirementsComponent implements OnInit {
   requirements: Requirement[] = [];
   closeResult: string;
   idProject: string;
+  signedUserId: string;
 
   constructor(
     private requirementService: RequirementService,    
@@ -28,6 +29,7 @@ export class ProjectRequirementsComponent implements OnInit {
   ngOnInit() {
     this.idProject = this.route.snapshot.paramMap.get('idProject');
     this.getProjectRequirements();    
+    this.signedUserId = this.route.snapshot.paramMap.get('id');
   }
 
   getProjectRequirements() {
@@ -55,7 +57,7 @@ export class ProjectRequirementsComponent implements OnInit {
   }
 
   back() {
-    this.router.navigate(["/analyst"]);
+    this.router.navigate(["/analyst", {id: this.signedUserId}]);
   }
 
 }

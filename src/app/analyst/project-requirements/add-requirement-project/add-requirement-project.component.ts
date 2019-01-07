@@ -4,6 +4,7 @@ import { RequirementService } from 'src/app/services/requirement/requirement.ser
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProjectService } from 'src/app/services/project/project.service';
 import { ActivatedRoute } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-add-requirement-project',
@@ -12,9 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AddRequirementProjectComponent implements OnInit {
 
-  selectedOption: string;
   @Input() idProject: string;
-
   @Input() modal;
 
   newRequirement: Requirement = {
@@ -27,6 +26,8 @@ export class AddRequirementProjectComponent implements OnInit {
   }
 
   requirements: Requirement[];
+  profileForm: FormGroup;
+  selectedRequirement: string;
 
   constructor(
     private requirementService: RequirementService,
@@ -36,13 +37,11 @@ export class AddRequirementProjectComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getAllRequirements();
-  }
+    this.profileForm = new FormGroup({
+      requirement: new FormControl('')
+    });
 
-  addRequirement(selectedRequirement: String) {
-    let newRequirement = this.requirements.find((element) => element.name==selectedRequirement);
-    this.requirementService.addRequirement(newRequirement).subscribe(() => this.requirementService.getAllRequirements().subscribe());
-    this.modalService.dismissAll();
+    this.getAllRequirements();
   }
 
   getAllRequirements() {
@@ -51,8 +50,13 @@ export class AddRequirementProjectComponent implements OnInit {
     });
   }
 
-  addRequirementToProject(selectedRequirement: String) {
-    let newRequirement = this.requirements.find((element) => element.name==selectedRequirement);
+  addRequirementToProject() {
+    if(this.profileForm.value.requirement == "") {
+      this.selectedRequirement = this.requirements[0].name;
+    } else {
+      this.selectedRequirement = this.profileForm.value.requirement;
+    }  
+    let newRequirement = this.requirements.find((element) => element.name==this.selectedRequirement);
     let idRequirement = newRequirement.idRequirement;
     this.projectService.addRequirementToProject(this.idProject, idRequirement.toString()).subscribe();
     this.modalService.dismissAll();

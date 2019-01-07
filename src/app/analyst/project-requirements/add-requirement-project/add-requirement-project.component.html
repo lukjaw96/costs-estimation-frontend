@@ -6,11 +6,20 @@
 </div>
 <div class="modal-body">
 
-  <select [(ngModel)]="selectedOption" *ngIf="requirements">
-    <option *ngFor="let requirement of requirements">{{requirement.name}}</option>
-  </select>
+  <!-- <select [(ngModel)]="selectedOption" *ngIf="requirements">
+    <option *ngFor="let requirement of requirements; let x = index;" [selected]="x == 1">{{requirement.name}}</option>
+  </select> -->
 
+
+  <form [formGroup]="profileForm" (ngSubmit)="addRequirementToProject()" id="ngForm">
+
+    <select formControlName="requirement">
+      <option *ngFor="let requirement of requirements">{{requirement.name}}</option>
+    </select>
+
+
+  </form>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="addRequirementToProject(selectedOption)">Save</button>
+  <button form="ngForm" type="submit" [disabled]="!profileForm.valid" class="btn btn-outline-dark">Save</button>
 </div>

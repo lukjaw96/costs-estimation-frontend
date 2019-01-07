@@ -1,16 +1,16 @@
 <div class="wrapper">
   <app-settings-bar></app-settings-bar>
   <h2>All users</h2>
-  <table>
+  <table class="table">
     <thead>
       <tr>
-        <th>idUser</th>
-        <th>firstName</th>
-        <th>lastName</th>
-        <th>username</th>
-        <th>role</th>
-        <th></th>
-        <th></th>
+        <th scope="col">id</th>
+        <th scope="col">first name</th>
+        <th scope="col">last name</th>
+        <th scope="col">username</th>
+        <th scope="col">role</th>
+        <th scope="col"></th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody *ngIf="users">
@@ -20,13 +20,14 @@
         <td>{{user.lastName}}</td>
         <td>{{user.username}}</td>
         <td>{{user.role}}</td>
-        <td><button *ngIf="!(user.idUser==signedUserId)" (click)="openUpdateUser(contentUpdate, user)">update user</button></td>
-        <td><button *ngIf="!(user.idUser==signedUserId)" (click)="deleteUser(user.idUser)">delete user</button></td>
+        <td><button type="button" class="btn btn-secondary" *ngIf="!(user.idUser==signedUserId)" (click)="openUpdateUser(contentUpdate, user)">Update</button></td>
+        <td><button type="button" class="btn btn-secondary" *ngIf="!(user.idUser==signedUserId)" (click)="deleteUser(user.idUser)">Delete</button></td>
       </tr>
     <tbody>
   </table>
-  <button (click)="openAddUser(contentAdd)">add user</button>
-  <button (click)="getAllUsers()">refresh</button>
+
+  <button type="button" class="btn btn-primary btn-add-user" (click)="openAddUser(contentAdd)">Add user</button>
+  <button type="button" class="btn btn-primary" (click)="getAllUsers()">Refresh</button>
 
   <ng-template #contentAdd let-modal>
     <app-add-user [modal]="modal"></app-add-user>

@@ -1,16 +1,16 @@
 <app-settings-bar></app-settings-bar>
-<button (click)="back()">back</button>
+<button type="button" class="btn btn-primary" (click)="back()">Back</button>
 
 <h2>All requirements</h2>
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>idRequirement</th>
-      <th>name</th>
-      <th>description</th>
-      <th>author</th>
-      <th>creationDate</th>
-      <th>finalCost</th>
+      <th scope="col">id</th>
+      <th scope="col">name</th>
+      <th scope="col">description</th>
+      <th scope="col">author</th>
+      <th scope="col">creation date</th>
+      <th scope="col">final cost</th>
     </tr>
   </thead>
   <tbody *ngIf="requirements">
@@ -24,8 +24,8 @@
     </tr>
   <tbody>
 </table>
-<button (click)="openAddRequirement(contentAdd)">add requirement</button>
-<button (click)="getProjectRequirements()">refresh</button>
+<button type="button" class="btn btn-primary btn-add-requirement" (click)="openAddRequirement(contentAdd)">Add requirement</button>
+<button type="button" class="btn btn-primary" (click)="getProjectRequirements()">Refresh</button>
 
  <ng-template #contentAdd let-modal>
   <app-add-requirement-project [modal]="modal" [idProject]="idProject"></app-add-requirement-project>

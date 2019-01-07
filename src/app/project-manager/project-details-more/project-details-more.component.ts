@@ -22,6 +22,7 @@ export class ProjectDetailsMoreComponent implements OnInit {
     endDate: null,
   };
   projectRequirements: Requirement[] = [];
+  signedUserId: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,10 +34,10 @@ export class ProjectDetailsMoreComponent implements OnInit {
     this.idProject = this.route.snapshot.paramMap.get('idProject');
     this.projectService.getProject(this.idProject).subscribe((result: { status: number, message: string, result: Project }) => this.project = result.result);
     this.projectService.getProjectRequirements(this.idProject).subscribe((result: { status: number, message: string, result: Requirement[] }) => {this.projectRequirements = result.result});
-  
+    this.signedUserId = this.route.snapshot.paramMap.get('id');
   }
 
   back() {
-    this.router.navigate(["/project_manager"]);
+    this.router.navigate(["/project_manager", {id: this.signedUserId}]);
   }
 }

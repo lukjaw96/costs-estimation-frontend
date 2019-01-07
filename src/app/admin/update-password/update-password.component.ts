@@ -37,7 +37,7 @@ export class UpdatePasswordComponent implements OnInit {
     this.updatedUserPassword.password = this.updatePassword.password;
     this.updatedUserPassword.oldPassword = this.updatePassword.oldPassword;
 
-    this.userService.updateUserPassword(this.updatedUserPassword).subscribe(() => this.userService.getAllUsers().subscribe());
+    this.userService.updateUserPassword(this.updatedUserPassword).subscribe();
     this.modalService.dismissAll();
   }
 

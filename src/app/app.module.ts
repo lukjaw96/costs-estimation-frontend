@@ -30,6 +30,7 @@ import { EstimationService } from './services/estimation/estimation.service';
 import { ProjectDetailsMoreComponent } from './project-manager/project-details-more/project-details-more.component';
 import { RequirementDetailsMoreComponent } from './project-manager/requirement-details-more/requirement-details-more.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RoleService } from './services/role/role.service';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginService,
     ProjectService,
     RequirementService,
-    EstimationService
+    EstimationService,
+    RoleService
   ],
   bootstrap: [
     AppComponent

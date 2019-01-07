@@ -24,8 +24,8 @@
       <input type="text" class="form-control" name="roleupdateSelfUser" [(ngModel)]="updateSelfUser.role" disabled />
     </div>
 
-    <button (click)="openUpdateUserPassword(contentUpdatePassword, updateSelfUser.idUser)">change password</button>
-    <button (click)="updateUserSelf(updateSelfUser)">Update</button>
+    <button type="button" class="btn btn-primary btn-open-update-password" (click)="openUpdateUserPassword(contentUpdatePassword, updateSelfUser.idUser)">change password</button>
+    <button type="button" class="btn btn-primary" (click)="updateUserSelf(updateSelfUser)">Update</button>
   </form>
 </div>
 <div class="modal-footer">

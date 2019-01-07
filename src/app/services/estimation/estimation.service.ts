@@ -32,5 +32,12 @@ export class EstimationService {
   getEstimationsRanges() {
     return this.http.get(`${this.rootAddress}/estimations/ranges`, this.getHttpHeaders());
   }
-  
+
+  updateEstimation(estimation: Estimation) {
+    return this.http.put<Estimation>(`${this.rootAddress}/estimations/${estimation.idEstimation}`, estimation, this.getHttpHeaders());
+  }
+
+  deleteEstimation(idEstimation: string) {
+    return this.http.delete<Estimation>(`${this.rootAddress}/estimations/${idEstimation}`, this.getHttpHeaders());
+  }  
 }

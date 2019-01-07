@@ -1,5 +1,5 @@
-<button (click)="logout()">logout</button>
-<button (click)="openGetUser(contentGet)">My profile</button>
+<button type="button" class="btn btn-primary btn-logout" (click)="logout()">Logout</button>
+<button type="button" class="btn btn-primary" (click)="openGetUser(contentGet)">My profile</button>
 
 <ng-template #contentGet let-modal>
   <app-update-self [modal]="modal" [updateSelfUser]="updateSelfUser"></app-update-self>

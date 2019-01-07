@@ -25,12 +25,15 @@ export class RequirementDetailsMoreComponent implements OnInit {
   requirementEstimations: Estimation[] = [];
   canvas: any;
   ctx: any;
+  signedUserId: string = '';
 
   constructor(
     private route: ActivatedRoute,
     private requirementService: RequirementService,
     private router: Router
-  ) { }
+  ) {
+    
+   }
 
   ngAfterViewInit() {
 
@@ -73,10 +76,10 @@ export class RequirementDetailsMoreComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.signedUserId = this.route.snapshot.paramMap.get('id');
   }
 
-
   back() {
-    this.router.navigate(["/project_manager"]);
+    this.router.navigate(["/project_manager", {id: this.signedUserId}]);
   }
 }

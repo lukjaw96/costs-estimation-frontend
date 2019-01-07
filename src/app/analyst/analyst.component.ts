@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Project } from '../models/Project';
 import { ProjectService } from '../services/project/project.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Requirement } from '../models/Requirement';
 import { RequirementService } from '../services/requirement/requirement.service';
 
@@ -16,17 +16,20 @@ export class AnalystComponent implements OnInit {
   projects: Project[] = [];
   requirements: Requirement[] = [];
   closeResult: string;
+  signedUserId: string;
 
   constructor(
     private requirementService: RequirementService, 
     private projectService: ProjectService,
     private modalService: NgbModal,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
     this.getAllProjects();
     this.getAllRequirements();
+    this.signedUserId = this.route.snapshot.paramMap.get('id');
   }
 
   getAllProjects() {
@@ -36,7 +39,7 @@ export class AnalystComponent implements OnInit {
   }
 
   openProjectRequirements(project: Project) {
-    this.router.navigate(['project-requirements', { idProject: project.idProject }]);
+    this.router.navigate(['project-requirements', { idProject: project.idProject, id: this.signedUserId }]);
   }
 
   getAllRequirements() {
