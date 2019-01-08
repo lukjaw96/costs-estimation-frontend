@@ -12,13 +12,13 @@
 <h3>Final cost</h3>
 <p>{{requirement.finalCost}}</p>
 <h2>All estimations</h2>
-<table>
+<table class="table">
   <thead>
     <tr>
-      <th>Estimation id</th>
-      <th>User id</th>
-      <th>Requirement id</th>
-      <th>Estimation</th>
+      <th scope="col">Estimation id</th>
+      <th scope="col">User id</th>
+      <th scope="col">Requirement id</th>
+      <th scope="col">Estimation</th>
     </tr>
   </thead>
   <tbody *ngIf="requirementEstimations">
@@ -30,10 +30,3 @@
     </tr>
   <tbody>
 </table>
-
-
-
-
-
-
-<canvas id="requirementsChartCanvas" width="700" height="400"></canvas>

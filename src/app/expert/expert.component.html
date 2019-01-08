@@ -3,21 +3,19 @@
 <table class="table">
   <thead>
     <tr>
-      <th>id</th>
-      <th>name</th>
-      <th>description</th>
-      <th>author</th>
-      <th>creation date</th>
-      <th>final cost</th>
-      <th></th>
-      <th></th>
+      <th scope="col">id</th>
+      <th scope="col">name</th>
+      <th scope="col">author</th>
+      <th scope="col">creation date</th>
+      <th scope="col">final cost</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody *ngIf="requirements">
     <tr *ngFor="let requirement of requirements; let i = index">
       <td>{{requirement.idRequirement}}</td>
       <td>{{requirement.name}}</td>
-      <td>{{requirement.description}}</td>
       <td>{{requirement.author}}</td>
       <td>{{requirement.creationDate}}</td>
       <td>{{requirement.finalCost}}</td>

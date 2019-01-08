@@ -5,7 +5,6 @@
     <tr>
       <th scope="col">id</th>
       <th scope="col">name</th>      
-      <th scope="col">description</th>
       <th scope="col">author</th>      
       <th scope="col">start date</th>
       <th scope="col">status</th>
@@ -17,7 +16,6 @@
     <tr *ngFor="let project of projects">
       <td>{{project.idProject}}</td>
       <td>{{project.name}}</td>
-      <td>{{project.description}}</td>
       <td>{{project.author}}</td>
       <td>{{project.startDate}}</td>
       <td>{{project.status}}</td>
@@ -41,7 +39,6 @@
     <tr>
       <th scope="col">id</th>
       <th scope="col">name</th>
-      <th scope="col">description</th>
       <th scope="col">author</th>
       <th scope="col">creation date</th>
       <th scope="col">final cost</th>
@@ -52,7 +49,6 @@
     <tr *ngFor="let requirement of requirements">
       <td>{{requirement.idRequirement}}</td>
       <td>{{requirement.name}}</td>
-      <td>{{requirement.description}}</td>
       <td>{{requirement.author}}</td>
       <td>{{requirement.creationDate}}</td>
       <td>{{requirement.finalCost}}</td>      
@@ -64,9 +60,11 @@
 </table>
 <div style="display: flex; flex-direction: column;">
     <div>
-        <canvas id="requirementsChartCanvas" width="700" height="400"></canvas>
+      <h2>Requirements statistics</h2>
+      <canvas id="requirementsChartCanvas" width="700" height="400"></canvas>
     </div>
     <div>
-        <canvas id="estimationsChartCanvas" width="700" height="400"></canvas>
+      <h2>Experts estimations</h2>
+      <canvas id="estimationsChartCanvas" width="700" height="400"></canvas>
     </div>    
 </div>

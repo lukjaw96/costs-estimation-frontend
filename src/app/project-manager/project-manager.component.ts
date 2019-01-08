@@ -120,21 +120,21 @@ export class ProjectManagerComponent implements OnInit {
           data: {
             labels: labels,
             datasets: [{
-              label: 'minimums',
+              label: 'Minimal estimation value',
               data: minimums,
               backgroundColor: minimumsBackgroundColor,
               borderWidth: 1
             },
             {
-              label: 'maximums',
-              data: maximums,
-              backgroundColor: maksimumsBackgroundColor,
+              label: 'Average estimation value',
+              data: averages,
+              backgroundColor: averagesBackgroundColor,
               borderWidth: 1
             },
             {
-              label: 'averages',
-              data: averages,
-              backgroundColor: averagesBackgroundColor,
+              label: 'Maximum estimation value',
+              data: maximums,
+              backgroundColor: maksimumsBackgroundColor,
               borderWidth: 1
             }
             ]
@@ -195,25 +195,25 @@ export class ProjectManagerComponent implements OnInit {
           data: {
             labels: labels,
             datasets: [{
-              label: 'range1_3',
+              label: 'Number of estiamtions in range of 1 to 3',
               data: range1_3,
               backgroundColor: range1_3BackgroundColor,
               borderWidth: 1
             },
             {
-              label: 'range4_6',
+              label: 'Number of estiamtions in range of 4 to 6',
               data: range4_6,
               backgroundColor: range4_6BackgroundColor,
               borderWidth: 1
             },
             {
-              label: 'range7_9',
+              label: 'Number of estiamtions in range of 7 to 9',
               data: range7_9,
               backgroundColor: range7_9BackgroundColor,
               borderWidth: 1
             },
             {
-              label: 'range10_12',
+              label: 'Number of estiamtions in range of 10 to 12',
               data: range10_12,
               backgroundColor: range10_12BackgroundColor,
               borderWidth: 1
